@@ -33,12 +33,16 @@
                                         <td>{{ $admin->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="fw-medium text-muted">Nomor Induk Mahasiswa</td>
+                                        <td class="fw-medium text-muted">NIM</td>
                                         <td>{{ $admin->nim }}</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-medium text-muted">Email</td>
                                         <td>{{ $admin->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-medium text-muted">Role</td>
+                                        <td>{{ $admin->role }}</td>
                                     </tr>
                                 </table>
                             </div>

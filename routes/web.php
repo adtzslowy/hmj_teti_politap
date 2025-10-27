@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
+Route::prefix('admin')->middleware(['auth:admin', 'role:GOD'])->group(function () {
     include __DIR__ . "/_/admin.php";
 });
 

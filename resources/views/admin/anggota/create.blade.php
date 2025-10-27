@@ -18,22 +18,23 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="mahasiswa_id" class="form-label">Mahasiswa</label>
-                                <select name="mahasiswa_id" id="mahasiswa_id" class="form-select" required>
+                                <select name="mahasiswa_id" id="mahasiswa_id" class="form-control select2" required>
                                     <option value="" disabled selected>Pilih Mahasiswa</option>
                                     @foreach ($mahasiswa as $mhs)
                                         <option value="{{ $mhs->id }}">{{ $mhs->nama_mahasiswa }} /
                                             {{ $mhs->nim }}</option>
                                     @endforeach
                                 </select>
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="jabatan_id" class="form-label">Jabatan Di Organisasi</label>
-                                <select name="jabatan_id" id="jabatan_id" class="form-select" required>
+                                <label for="divisi_id" class="form-label">Jabatan Di Organisasi</label>
+                                <select name="divisi_id" id="divisi_id" class="form-select" required>
                                     <option value="" disabled selected>Masukkan Jabatan</option>
-                                    @foreach ($jabatan as $jtn)
-                                        <option value="{{ $jtn->id }}">{{ $jtn->nama_jabatan }}</option>
+                                    @foreach ($divisi as $d)
+                                        <option value="{{ $d->id }}">{{ $d->nama_divisi }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -51,4 +52,15 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                placeholder: "Cari nama mahasiswa...",
+                allowClear: true
+            });
+        });
+    </script>
+    @endpush
+
 </x-admin>

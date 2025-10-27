@@ -15,14 +15,6 @@ class Mahasiswa extends Authenticatable
         'password',
         'status_mahasiswa',
         'jenis_kelamin',
-        'tempat_lahir',
-        'tanggal_lahir',
-        'agama',
-        'nomor_telepon',
-        'email_kampus',
-        'email_pribadi',
-        'status_nikah',
-        'pekerjaan',
         'foto_profil'
     ];
 

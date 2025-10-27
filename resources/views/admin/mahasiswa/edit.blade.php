@@ -24,7 +24,7 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-6 text-center">
                             @if ($mahasiswa->foto_profil)
                                 <img src="{{ url('storage/' . $mahasiswa->foto_profil) }}"
                                     alt="{{ $mahasiswa->nama_mahasiswa }}" class="img-fluid rounded-xl shadow-sm"
@@ -34,7 +34,7 @@
                                     alt="{{ $mahasiswa->nama_mahasiswa }}" class="img-fluid rounded-xl shadow-sm">
                             @endif
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="nama_mahasiswa" class="form-label">Nama Mahasiswa</label>
                                 <input type="text" name="nama_mahasiswa" class="form-control"
@@ -70,65 +70,6 @@
                                         {{ old('jenis_kelamin', $mahasiswa->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>
                                         Perempuan</option>
                                 </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir"
-                                    placeholder="Masukkan Tempat Lahir"
-                                    value="{{ old('tempat_lahir', $mahasiswa->tempat_lahir) }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir"
-                                    placeholder="Masukkan Tanggal Lahir"
-                                    value="{{ old('tanggal_lahir', $mahasiswa->tanggal_lahir) }}" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="agama" class="form-label">Agama</label>
-                                <select name="agama" class="form-select">
-                                    <option value="" selected disabled>Agama Mahasiswa</option>
-                                    <option value="Islam"
-                                        {{ old('agama', $mahasiswa->agama) == 'Islam' ? 'selected' : '' }}>Islam
-                                    </option>
-                                    <option value="Kristen Protestan"
-                                        {{ old('agama', $mahasiswa->agama) == 'Kristen Protestan' ? 'selected' : '' }}>
-                                        Kristen Protestan</option>
-                                    <option value="Katolik"
-                                        {{ old('agama', $mahasiswa->agama) == 'Katolik' ? 'selected' : '' }}>Katolik
-                                    </option>
-                                    <option value="Hindu"
-                                        {{ old('agama', $mahasiswa->agama) == 'Hindu' ? 'selected' : '' }}>Hindu
-                                    </option>
-                                    <option value="Buddha"
-                                        {{ old('agama', $mahasiswa->agama) == 'Buddha' ? 'selected' : '' }}>Buddha
-                                    </option>
-                                    <option value="Konghucu"
-                                        {{ old('agama', $mahasiswa->agama) == 'Konghucu' ? 'selected' : '' }}>Konghucu
-                                    </option>
-                                    <option value="Tidak Tahu"
-                                        {{ old('agama', $mahasiswa->agama) == 'Tidak Tahu' ? 'selected' : '' }}>Tidak
-                                        Tahu</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nomor_telepon" class="form-label">Nomor Telepon Pribadi</label>
-                                <input type="text" class="form-control" name="nomor_telepon"
-                                    placeholder="Masukkan Nomor Telepon"
-                                    value="{{ old('nomor_telepon', $mahasiswa->nomor_telepon) }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_kampus" class="form-label">Email Kampus</label>
-                                <input type="email" class="form-control" name="email_kampus"
-                                    placeholder="Masukkan Email Kampus"
-                                    value="{{ old('email_kampus', $mahasiswa->email_kampus) }}" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_pribadi" class="form-label">Email Pribadi</label>
-                                <input type="email" class="form-control" name="email_pribadi"
-                                    placeholder="Masukkan Email Pribadi"
-                                    value="{{ old('email_pribadi', $mahasiswa->email_pribadi) }}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="foto_profil" class="form-label">Profile Picture</label>

@@ -16,6 +16,7 @@ class Admin extends Authenticatable
         'nim',
         "password",
         "foto_profil",
+        "role",
     ];
 
     public $incrementing = false;

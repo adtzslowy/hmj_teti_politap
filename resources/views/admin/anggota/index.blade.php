@@ -51,7 +51,7 @@
                                 </form>
                             </td>
                             <td>{{ $item->mahasiswa->nama_mahasiswa }}</td>
-                            <td>{{ $item->jabatan->nama_jabatan }}</td>
+                            <td>{{ $item->divisi->nama_divisi }}</td>
                         </tr>
                     @empty
                         <tr>

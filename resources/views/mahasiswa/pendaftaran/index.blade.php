@@ -3,7 +3,7 @@
         <div class="row mb-3 d-flex justify-content-between">
             <div class="col-12 col-md-12 mb-2">
                 <a href="{{ url('mahasiswa/pendaftaran-anggota/create') }}" class="btn btn-dark">
-                    <i class="ti ti-plus"></i> Daftar
+                    <i class="ti ti-plus"></i> Daftar Keanggotaan
                 </a>
             </div>
 
@@ -34,7 +34,7 @@
                                         <span class="badge bg-danger text-dark">Decline</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->alasan_ditolak }}</td>
+                                <td>{{ $item->alasan_ditolak ?? '-' }}</td>
                                 <td>{{ $item->created_at->format('d M Y') }}</td>
                             </tr>
                         @empty

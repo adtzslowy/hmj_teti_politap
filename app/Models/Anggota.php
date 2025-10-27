@@ -12,7 +12,7 @@ class Anggota extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
-    protected $fillable = ['mahasiswa_id', 'jabatan_id'];
+    protected $fillable = ['mahasiswa_id', 'divisi_id'];
 
     public static function boot()
     {

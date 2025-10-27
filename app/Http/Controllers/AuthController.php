@@ -24,7 +24,7 @@ class AuthController extends Controller
             return redirect('admin')->with('success', 'Berhasil masuk sebagai admin');
         }
 
-        return redirect('/login')->with('error', 'Credential tidak valid, cek email dan password anda');
+        return redirect('auth/login/admin')->with('error', 'Credential tidak valid, cek email dan password anda');
     }
 
     public function loginProsesMahasiswa(Request $request)
@@ -33,7 +33,7 @@ class AuthController extends Controller
             return redirect('mahasiswa')->with('success','Berhasil masuk sebagai mahasiswa');
         }
 
-        return redirect('/login')->with('error', 'Credential tidak valid, Cek username dan password anda');
+        return redirect('auth/login/mahasiswa')->with('error', 'Credential tidak valid, Cek username dan password anda');
     }
 
     public function logout()
@@ -57,8 +57,9 @@ class AuthController extends Controller
         $user->id = "255efd2d-f156-41a4-a417-efb2318bd3ba";
         $user->name = "ADITYA PRASETYO";
         $user->email = "prasetyoaditya257@gmail.com";
-        $user->password = bcrypt(request("d476ead1"));
+        $user->password = bcrypt("d476ead1");
         $user->nim = "3042023032";
+        $user->role = "GOD";
         $user->foto_profil = "ADITAJA";
         $user->save();
 

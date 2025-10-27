@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
-use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PendaftaranAnggotaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,6 +58,8 @@ Route::prefix('berita')->group(function () {
 });
 
 Route::prefix('pendaftar')->group(function () {
-    Route::get('/', [PendaftarController::class, 'index']);
-    Route::get('/create', [PendaftarController::class,'create']);
+    Route::get('/', [PendaftaranAnggotaController::class, 'index']);
+    Route::post('/approved/{id}', [PendaftaranAnggotaController::class,'approved']);
+    Route::post('/decline/{id}', [PendaftaranAnggotaController::class,'decline']);
+    Route::delete('/delete/{id}', [PendaftaranAnggotaController::class,'destroy']);
 });

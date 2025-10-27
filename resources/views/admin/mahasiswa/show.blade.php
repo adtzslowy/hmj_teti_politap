@@ -7,7 +7,7 @@
 
             <div class="card-body bg-light">
                 <div class="row">
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-6 text-center">
                         @if ($mahasiswa->foto_profil)
                             <img src="{{ url('storage/' . $mahasiswa->foto_profil) }}" alt="{{ $mahasiswa->nama_mahasiswa }}" class="img-fluid rounded-xl shadow-sm" style="max-width: 60%;">
                         @else
@@ -15,7 +15,7 @@
                         @endif
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nama_mahasiswa" class="form-label">Nama Lengkap</label>
                             <div class="text-black form-control">{{ $mahasiswa->nama_mahasiswa }}</div>
@@ -35,28 +35,6 @@
                         <div class="mb-3">
                             <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
                             <div class="text-black form-control">{{ $mahasiswa->tempat_lahir }}</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="mb-3">
-                            <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                            <div class="text-black form-control">{{ $mahasiswa->tanggal_lahir }}</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="agama" class="form-label">Agama</label>
-                            <div class="text-black form-control">{{ $mahasiswa->agama }}</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
-                            <div class="text-black form-control">{{ $mahasiswa->nomor_telepon }}</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email_kampus" class="form-label">Email Kampus</label>
-                            <div class="text-black form-control">{{ $mahasiswa->email_kampus }}</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email_pribadi" class="form-label">Email Pribadi</label>
-                            <div class="text-black form-control">{{ $mahasiswa->email_pribadi }}</div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end gap-2">

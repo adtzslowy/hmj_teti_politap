@@ -7,6 +7,8 @@
     <title>{{ $title ?? 'Himpunan Mahasiswa Jurusan' }}</title>
     <link rel="shortcut icon" type="image/png" href="{{ url('source') }}/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ url('source') }}/assets/css/styles.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 
 <body>
@@ -34,6 +36,8 @@
     <script src="{{ url('source') }}/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="{{ url('source') }}/assets/libs/simplebar/dist/simplebar.js"></script>
     <script src="{{ url('source') }}/assets/js/dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('scripts')

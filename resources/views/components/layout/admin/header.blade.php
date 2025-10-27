@@ -11,6 +11,11 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown d-flex align-items-center">
                     <span class="fw-semibold">
+                        @if (Auth::check() && Auth::user()->role === 'GOD')
+                            <span class="badge bg-success fw-bold me-2">
+                                GOD MODE
+                            </span>
+                        @endif
                         {{ Auth::user()->name }}
                     </span>
 

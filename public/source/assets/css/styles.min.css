@@ -16899,3 +16899,30 @@ ul {
 .timeline-widget .timeline-item .timeline-badge.badge-primary {
     border: 2px solid #5d87ff;
 }
+
+.select2-container .select2-selection--single {
+    border: 1px solid #ced4da !important;
+    border-radius: 0.375rem !important;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    padding-left: 10px;
+    height: 40px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px !important;
+    color: #212529 !important;
+}
+
+    /* Placeholder style */
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    font-style: italic;
+    color: #6c757d !important;
+}
+
+    /* Panah dropdown biar sejajar */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    right: 10px !important;
+    height: 38px !important;
+}

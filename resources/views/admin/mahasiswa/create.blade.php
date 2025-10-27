@@ -43,39 +43,6 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Masukkan Tempat Lahir" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir" placeholder="Masukkan Tanggal Lahir" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="agama" class="form-label">Agama</label>
-                                <select name="agama" class="form-select">
-                                    <option value="" selected disabled>Agama Mahasiswa</option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen Protestan">Kristen Protestan</option>
-                                    <option value="Katolik">Katolik</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Buddha">Buddha</option>
-                                    <option value="Konghucu">Konghucu</option>
-                                    <option value="Tidak Tahu">Tidak Tahu</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nomor_telepon" class="form-label">Nomor Telepon Pribadi</label>
-                                <input type="text" class="form-control" name="nomor_telepon" placeholder="Masukkan Nomor Telepon" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_kampus" class="form-label">Email Kampus</label>
-                                <input type="email" class="form-control" name="email_kampus" placeholder="Masukkan Email Kampus" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email_pribadi" class="form-label">Email Pribadi</label>
-                                <input type="email" class="form-control" name="email_pribadi" placeholder="Masukkan Email Pribadi" required>
-                            </div>
-                            <div class="mb-3">
                                 <label for="foto_profil" class="form-label">Profile Picture</label>
                                 <input type="file" class="form-control" name="foto_profil" required>
                             </div>

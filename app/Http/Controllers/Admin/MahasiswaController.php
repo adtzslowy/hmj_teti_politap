@@ -17,7 +17,8 @@ class MahasiswaController extends Controller
         $search = request()->query('search');
 
         $mahasiswa = Mahasiswa::when($search, function ($query) use ($search) {
-            return $query->where('nim', 'like', "%{$search}%");
+            return $query->where('nama_mahasiswa', 'like', "%{$search}%")
+                            ->orWhere('nim', 'like', "%{$search}%");
         })->paginate(10);
         return view('admin.mahasiswa.index', compact('mahasiswa'));
     }
@@ -40,12 +41,6 @@ class MahasiswaController extends Controller
             'nim' => 'required|string|max:255|unique:mahasiswa,nim',
             'status_mahasiswa' => 'required|in:Aktif,Tidak Aktif',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'agama' => 'required|in:Islam,Kristen Protestan,Katolik,Hindu,Buddha,Konghucu,Tidak Tahu',
-            'nomor_telepon' => 'required|string|max:255',
-            'email_kampus' => 'required|email',
-            'email_pribadi' => 'required|email',
             'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096'
         ]);
 
@@ -91,12 +86,6 @@ class MahasiswaController extends Controller
             'nim' => 'nullable|string|max:255',
             'status_mahasiswa' => 'required|in:Aktif,Tidak Aktif',
             'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'tempat_lahir' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
-            'agama' => 'required|in:Islam,Kristen Protestan,Katolik,Hindu,Buddha,Konghucu,Tidak Tahu',
-            'nomor_telepon' => 'required|string|max:255',
-            'email_kampus' => 'required|email',
-            'email_pribadi' => 'required|email',
             'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096'
         ]);
 
