@@ -7,7 +7,7 @@ use App\Models\Berita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class beritaController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
