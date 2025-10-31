@@ -49,9 +49,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($mahasiswa as $index => $m)
+                    @forelse($mahasiswa as $m)
                         <tr>
-                            <td>{{ $mahasiswa->firstItem() + $index }}</td>
+                            <td>{{ $loop->iteration}}</td>
                             <td class="d-flex justify-content-center flex-wrap gap-1">
                                 <a href="{{ url('admin/mahasiswa/show/' . $m->id) }}" class="btn btn-info btn-sm"
                                     title="Detail">
@@ -153,18 +153,6 @@
                         }
                     });
                 });
-            });
-
-            // Search debounce
-            const searchInput = document.getElementById('searchInput');
-            const searchForm = document.getElementById('searchForm');
-            let debounceTimeout;
-
-            searchInput.addEventListener('input', () => {
-                clearTimeout(debounceTimeout);
-                debounceTimeout = setTimeout(() => {
-                    searchForm.submit();
-                }, 500);
             });
         </script>
 

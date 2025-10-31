@@ -16,9 +16,10 @@ class MahasiswaController extends Controller
     {
         $search = request()->query('search');
 
-        $mahasiswa = Mahasiswa::when($search, function ($query) use ($search) {
+        $mahasiswa = Mahasiswa::orderBy('nim','asc')->when($search, function ($query) use ($search) {
             return $query->where('nama_mahasiswa', 'like', "%{$search}%")
                             ->orWhere('nim', 'like', "%{$search}%");
+
         })->paginate(10);
         return view('admin.mahasiswa.index', compact('mahasiswa'));
     }

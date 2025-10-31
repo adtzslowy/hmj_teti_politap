@@ -14,7 +14,7 @@ Route::get('profile', [DashboardController::class, 'profil']);
 Route::get('profile/edit/{id}', [DashboardController::class, 'edit']);
 Route::put('profile/{id}', [DashboardController::class, 'update']);
 
-Route::prefix('divisi')->group(function() {
+Route::prefix('divisi')->middleware(['auth', 'role:GOD'])->group(function() {
     Route::get('/', [DivisiController::class, 'index']);
     Route::get('/create', [DivisiController::class,'create']);
     Route::post('/', [DivisiController::class,'store']);
@@ -45,7 +45,6 @@ Route::prefix('mahasiswa')->group(function () {
     Route::delete('/delete/{id}', [MahasiswaController::class, 'destroy']);
     Route::post('/import', [MahasiswaController::class, 'import']);
 });
-
 
 Route::prefix('berita')->group(function () {
     Route::get('/', [BeritaController::class, 'index']);

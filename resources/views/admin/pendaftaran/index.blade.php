@@ -80,9 +80,11 @@
                                                     <select name="divisi_ditempatkan_id" class="form-select" required>
                                                         <option value="">-- Pilih Divisi --</option>
                                                         @foreach ($divisi as $div)
-                                                            <option value="{{ $div->id }}">
-                                                                {{ $div->nama_divisi }}
-                                                            </option>
+                                                            @if (!in_array($div->nama_divisi, ['Ketua', 'Wakil Ketua']))
+                                                                <option value="{{ $div->id }}">
+                                                                    {{ $div->nama_divisi }}
+                                                                </option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>
