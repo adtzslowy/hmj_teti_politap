@@ -45,7 +45,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `nim`, `role`, `foto_profil`, `created_at`, `updated_at`) VALUES
 ('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'GOD', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-10-31 02:13:58', '2025-10-30 19:13:58'),
-('30a1fe6c-a2a0-46f9-a7b1-d978ecb14007', 'Deswita Mutia Putri', 'deswita@gmail.com', '$2y$12$Qgx7E3Abky8ELJZwcaa8LOgq7ADTNWUkrjEyrhypP/O8cpgoRb7Wq', '3042023019', 'Admin', 'Profil aja', '2025-10-30 20:50:48', '2025-10-30 20:50:48');
+('30a1fe6c-a2a0-46f9-a7b1-d978ecb14007', 'Deswita Mutia Putr', 'deswita@gmail.com', '$2y$12$Qgx7E3Abky8ELJZwcaa8LOgq7ADTNWUkrjEyrhypP/O8cpgoRb7Wq', '3042023019', 'Admin', 'Profil aja', '2025-10-30 20:50:48', '2025-10-30 20:50:48');
 
 -- --------------------------------------------------------
 
