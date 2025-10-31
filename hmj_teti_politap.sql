@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2025 at 04:17 PM
+-- Generation Time: Oct 31, 2025 at 04:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,7 +44,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `nim`, `role`, `foto_profil`, `created_at`, `updated_at`) VALUES
-('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'GOD', 'profile_admin/9ttDUJVko84eE1EES8tcRvHadnls04JiDUE0J6Hr.jpg', '2025-10-23 14:26:57', '2025-10-23 07:26:57');
+('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'GOD', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-10-31 02:13:58', '2025-10-30 19:13:58'),
+('30a1fe6c-a2a0-46f9-a7b1-d978ecb14007', 'Deswita Mutia Putri', 'deswita@gmail.com', '$2y$12$Qgx7E3Abky8ELJZwcaa8LOgq7ADTNWUkrjEyrhypP/O8cpgoRb7Wq', '3042023019', 'Admin', 'Profil aja', '2025-10-30 20:50:48', '2025-10-30 20:50:48');
 
 -- --------------------------------------------------------
 
@@ -59,13 +60,6 @@ CREATE TABLE `anggota` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `anggota`
---
-
-INSERT INTO `anggota` (`id`, `mahasiswa_id`, `divisi_id`, `created_at`, `updated_at`) VALUES
-('603c43a9-8066-4c96-a2fc-b2564c02b1c8', '0618b561-e3ff-4369-93fa-9d8b615ac037', 'da0cb042-aa87-46a8-b087-5f2846cc41d6', '2025-10-21 20:28:26', '2025-10-21 20:28:26');
 
 -- --------------------------------------------------------
 
@@ -123,7 +117,7 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `divisi` (
   `id` char(36) NOT NULL,
-  `nama_divisi` enum('Ketua','Koordinator','Bendahara','Sekertaris','Pengembangan Sumber Daya Mahasiswa','Akademik','Hubungan Masyarakat','Komunikasi dan Informasi','Komisi Kedisiplinan') NOT NULL,
+  `nama_divisi` enum('Ketua','Koordinator','Bendahara','Sekertaris','Pengembangan Sumber Daya Mahasiswa','Akademik','Hubungan Masyarakat','Komunikasi dan Informasi','Komisi Kedisiplinan','Wakil Ketua') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -135,6 +129,7 @@ CREATE TABLE `divisi` (
 INSERT INTO `divisi` (`id`, `nama_divisi`, `created_at`, `updated_at`) VALUES
 ('09cf5b78-a807-4f07-9d91-f25ae871fa07', 'Ketua', '2025-10-20 19:42:23', '2025-10-20 19:42:23'),
 ('683de7d1-214b-464c-b380-d7fade97fcfc', 'Pengembangan Sumber Daya Mahasiswa', '2025-10-17 19:59:52', '2025-10-17 19:59:52'),
+('98818446-eb7c-4d58-8306-967d22c32f83', 'Wakil Ketua', '2025-10-30 20:46:00', '2025-10-30 20:46:00'),
 ('a5ee91bd-f546-4caf-8466-386830975cd8', 'Koordinator', '2025-10-17 19:56:39', '2025-10-17 19:56:39'),
 ('ceb11161-b841-4748-9c44-88bab55d4469', 'Komunikasi dan Informasi', '2025-10-20 00:40:32', '2025-10-20 00:40:32'),
 ('da0cb042-aa87-46a8-b087-5f2846cc41d6', 'Komisi Kedisiplinan', '2025-10-17 20:01:10', '2025-10-17 20:01:10'),
@@ -275,7 +270,7 @@ INSERT INTO `mahasiswa` (`id`, `nama_mahasiswa`, `nim`, `password`, `status_maha
 ('ee666010-8aea-4f6c-b897-0a93315996c1', 'Julita', '3042024055', '$2y$12$ljZm.5.CXKyb8WFTtz1T7ufeYNsbaXUJnIdTrsWx/8fkwITx5Vzfq', 'Aktif', 'Perempuan', '-', '2025-10-21 15:15:59', '2025-10-21 15:15:59'),
 ('ef2b30ea-72c6-428f-b6ae-202793c8070c', 'Anisha Dewi', '3042024010', '$2y$12$yPQxLky9E4fLqJlJohj56er2OAGfmtH9yPLYWQSIfiWdUZ2gbtmcO', 'Aktif', 'Perempuan', '-', '2025-10-21 15:15:48', '2025-10-21 15:15:48'),
 ('f1941fd7-2fe8-4e7b-ab15-925b1b30b45c', 'Adrian Yoga Pratama', '3042024037', '$2y$12$LOcv6RotBFf76CjH4Baz9uNf2F1upBdS9VW.0aeoVDbIT.ncPWdqi', 'Aktif', 'Laki-Laki', '-', '2025-10-21 15:15:55', '2025-10-21 15:15:55'),
-('f396e21d-81a2-476b-8332-9fdd047afd8f', 'Khairunnisa', '3042024001', '$2y$12$j6TNE2XywxpOAGkOKzXFoOf3vI7xVqax7qinl3aaoK9JPz5p5kMfe', 'Aktif', 'Perempuan', '-', '2025-10-21 15:15:46', '2025-10-21 15:15:46'),
+('f396e21d-81a2-476b-8332-9fdd047afd8f', 'Khairunnisa', '3042024001', '$2y$12$j6TNE2XywxpOAGkOKzXFoOf3vI7xVqax7qinl3aaoK9JPz5p5kMfe', 'Aktif', 'Perempuan', 'profile_picture/3M0EjyD6G56xFSxypuOPrLjTl18txS2KpI3Ok55O.jpg', '2025-10-31 02:10:52', '2025-10-30 19:10:52'),
 ('f83b6abd-23a1-4a41-85ff-c564726f1655', 'Riki Prayuda', '3042024013', '$2y$12$9w4z.jQrd3Naq5WlEDnlbePvhwN6T1EIQVoyyu8iSuZjZx1a/ZnmO', 'Aktif', 'Laki-Laki', '-', '2025-10-21 15:15:49', '2025-10-21 15:15:49'),
 ('f929444f-ba10-4b4a-9673-651e7926d201', 'Intan Saras Wati', '3042024020', '$2y$12$DmxyRwm.wo.DSF1vozKxKOOkUp1Qy/OR4OBwLx.hMDhRgLlAtjkIm', 'Aktif', 'Perempuan', '-', '2025-10-21 15:15:51', '2025-10-21 15:15:51');
 
@@ -350,7 +345,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('zS8Z6jjc6XD3GDeoaAdVlcTV3G80inLF9g9lOBs8', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVkFndkhVRFZxUUdOT2pLNWo0Uk03QUNhTU81UDdDa1RtUDlJb1R0byI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1761527515);
+('cfamPfCxlPVt7abLKVE2TJPbpnJA88fbLzH5WVlf', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVG42bkE3UnN1RmlIM0tIT2EzRWk3ME5OcnZnSENFaWZKeWpSamhpSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9nb2QtbW9kZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9tYWhhc2lzd2EiO31zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtzOjM2OiIwNzkyMzg4MS1kZTJlLTRjZDUtYTVkZi1kYTNjMzY0ZTk4NjMiO3M6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fX0=', 1761882648);
 
 -- --------------------------------------------------------
 

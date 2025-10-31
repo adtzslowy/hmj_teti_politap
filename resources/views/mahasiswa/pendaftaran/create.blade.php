@@ -25,7 +25,9 @@
                             <select name="divisi_dipilih_id" id="divisi_dipilih_id" class="form-select" required>
                                 <option value="" disabled selected>Silahkan Pilih Divisi</option>
                                 @foreach ($divisi as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama_divisi }}</option>
+                                    @if (!in_array($item->nama_divisi, ['Ketua', 'Wakil Ketua']))
+                                        <option value="{{ $item->id }}">{{ $item->nama_divisi }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

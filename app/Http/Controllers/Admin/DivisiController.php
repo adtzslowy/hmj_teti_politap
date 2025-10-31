@@ -22,7 +22,7 @@ class DivisiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_divisi' => 'required|in:Ketua,Koordinator,Sekertaris,Bendahara,Pengembangan Sumber Daya Mahasiswa,Akademik,Hubungan Masyarakat,Komunikasi dan Informasi,Komisi Kedisiplinan'
+            'nama_divisi' => 'required|in:Ketua,Wakil Ketua,Koordinator,Sekertaris,Bendahara,Pengembangan Sumber Daya Mahasiswa,Akademik,Hubungan Masyarakat,Komunikasi dan Informasi,Komisi Kedisiplinan'
         ]);
 
         $divisi = new Divisi();

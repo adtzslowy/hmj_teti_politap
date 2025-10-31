@@ -54,13 +54,13 @@ class AuthController extends Controller
     public function addAdmin(Request $request)
     {
         $user = new Admin;
-        $user->id = "255efd2d-f156-41a4-a417-efb2318bd3ba";
-        $user->name = "ADITYA PRASETYO";
-        $user->email = "prasetyoaditya257@gmail.com";
+        $user->id = "244efd2d-f156-41a4-a417-efb2318bd3bc";
+        $user->name = "Deswita Mutia Putri";
+        $user->email = "deswita@gmail.com";
         $user->password = bcrypt("d476ead1");
-        $user->nim = "3042023032";
-        $user->role = "GOD";
-        $user->foto_profil = "ADITAJA";
+        $user->nim = "3042023019";
+        $user->role = "Admin";
+        $user->foto_profil = "Profil aja";
         $user->save();
 
         return "ADMIN BERAHSIL DI BUAT LAIN KALI JANGAN DILUPAKKAN PASSWORDNYE";

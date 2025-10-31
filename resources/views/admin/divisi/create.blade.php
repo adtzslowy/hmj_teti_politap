@@ -21,6 +21,7 @@
                                 <select name="nama_divisi" id="nama_divisi" class="form-select">
                                     <option value="" disabled selected>Masukkan Divisi</option>
                                     <option value="Ketua">Ketua</option>
+                                    <option value="Wakil Ketua">Wakil Ketua</option>
                                     <option value="Koordinator">Koordinator</option>
                                     <option value="Sekertaris">Sekertaris</option>
                                     <option value="Bendahara">Bendahara</option>

@@ -3,7 +3,7 @@
         <div class="row mb-3 d-flex justify-content-between">
             <div class="col-12 col-md-12 mb-2">
                 <a href="{{ url('admin/divisi/create') }}" class="btn btn-dark">
-                    <i class="ti ti-plus"></i> Tambah
+                    <i class="ti ti-plus"></i> Tambah Divisi
                 </a>
             </div>
 

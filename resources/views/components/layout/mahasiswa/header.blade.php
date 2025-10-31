@@ -11,7 +11,7 @@
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                 <li class="nav-item dropdown d-flex align-items-center">
                     <span class="fw-semibold d-flex align-items-center gap-2">
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->nama_mahasiswa}}
                     </span>
 
                     <a class="nav-link nav-icon" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
