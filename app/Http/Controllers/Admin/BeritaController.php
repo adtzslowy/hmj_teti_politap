@@ -50,9 +50,9 @@ class BeritaController extends Controller
             $berita['dokumentasi'] = $path;
         }
 
-        berita::create($data);
+        Berita::create($data);
 
-        return redirect('admin/berita')->with('success', 'berita berhasil di upload');
+        return redirect('admin/berita')->with('success', 'Berita berhasil di upload');
     }
 
     /**

@@ -59,7 +59,7 @@ class AuthController extends Controller
         $user->email = "deswita@gmail.com";
         $user->password = bcrypt("d476ead1");
         $user->nim = "3042023019";
-        $user->role = "Admin";
+        $user->role = "Operator";
         $user->foto_profil = "Profil aja";
         $user->save();
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PendaftaranAnggotaController;
+use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,6 +25,14 @@ Route::prefix('divisi')->middleware(['auth', 'role:GOD'])->group(function() {
     Route::delete('/delete/{id}', [DivisiController::class,'destroy']);
 });
 
+Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function () {
+    Route::get('/', [TambahAdminController::class, 'index']);
+    Route::get('/create', [TambahAdminController::class, 'create']);
+    Route::post('/', [TambahAdminController::class, 'store']);
+    Route::get('/edit/{id}', [TambahAdminController::class, 'edit']);
+    Route::put('/{id}', [TambahAdminController::class, 'update']);
+    Route::delete('/delete/{id}', [TambahAdminController::class,  'destroy']);
+});
 
 Route::prefix('anggota')->group(function () {
     Route::get('/', [AnggotaController::class, 'index']);

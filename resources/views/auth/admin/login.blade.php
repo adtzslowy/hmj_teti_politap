@@ -28,10 +28,8 @@
 
                                 <!-- Logo -->
                                 <a href="{{ url('/') }}" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ url('source') }}/assets/images/logos/dark-logo.svg" width="180" alt="Logo">
+                                    <img src="{{ url('source') }}/assets/images/logo.png" width="280" alt="Logo">
                                 </a>
-
-                                <p class="text-center mb-4">Trying To Do Better</p>
 
                                 <!-- Login Form -->
                                 <form action="{{ url('auth/login/admin') }}" method="POST">
@@ -62,7 +60,7 @@
 
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
-                                            <input class="form-check-input primary" type="checkbox" id="remember"
+                                            <input class="form-check-input bg-dark" type="checkbox" id="remember"
                                                 checked>
                                             <label class="form-check-label text-dark" for="remember">
                                                 Remember this Device
@@ -71,11 +69,15 @@
                                     </div>
 
                                     <!-- Sign In Button -->
-                                    <button type="submit" class="btn btn-primary w-100 py-2 fs-5 mb-4 rounded-2">
+                                    <button type="submit" class="btn btn-dark w-100 py-2 fs-5 mb-4 rounded-2">
                                         Sign In
                                     </button>
                                 </form>
-
+                                <div class="d-flex justify-content-center">
+                                    <span class="text-black text-center">
+                                        Anda mahasiswa? <a href="{{ url('auth/login/mahasiswa') }}">Klik disini</a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
