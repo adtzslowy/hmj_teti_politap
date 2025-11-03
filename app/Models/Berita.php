@@ -28,10 +28,11 @@ class Berita extends Model
     public function fotoBerita($request)
     {
         if ($request->hasFile('dokumentasi')) {
-            $path = $request->file('dokumentasi')->store('dokumentasi_berita', 'public');
+            $file = $request->file('dokumentasi');
+            $path = $file->store('dokumentasi_berita', 'public');
             return $path;
         }
 
-        return null;
+        return $this->dokumentasi ?? null;
     }
 }
