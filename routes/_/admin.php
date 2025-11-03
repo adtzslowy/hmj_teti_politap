@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AnggotaController;
+use App\Http\Controllers\Admin\ArsipController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DivisiController;
@@ -32,6 +33,10 @@ Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function 
     Route::get('/edit/{id}', [TambahAdminController::class, 'edit']);
     Route::put('/{id}', [TambahAdminController::class, 'update']);
     Route::delete('/delete/{id}', [TambahAdminController::class,  'destroy']);
+});
+
+Route::prefix('arsip')->group(function() {
+    Route::get('/', [ArsipController::class, 'index']);
 });
 
 Route::prefix('anggota')->group(function () {

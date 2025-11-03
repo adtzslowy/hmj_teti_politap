@@ -38,19 +38,16 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'dokumentasi' => 'required|mimes:png,jpg,jpeg,webp|max:2048',
+            'dokumentasi' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'tanggal_post' => 'required|date',
         ]);
 
-        $data = $request->except(['_token', 'dokumentasi']);
+        $berita = new Berita($request->except(['_token', 'dokumentasi']));
 
-        $berita = new berita();
-        $path = $berita->fotoberita($request);
-        if ($path) {
-            $berita['dokumentasi'] = $path;
-        }
+        $path = $berita->fotoBerita($request);
+        $berita->dokumentasi = $path;
 
-        Berita::create($data);
+        $berita->save();
 
         return redirect('admin/berita')->with('success', 'Berita berhasil di upload');
     }
@@ -93,7 +90,7 @@ class BeritaController extends Controller
                 Storage::disk('public')->delete($berita->dokumentasi);
             }
 
-            $data['dokumentasi'] = $berita->fotoberita($request);
+            $data['dokumentasi'] = $berita->fotoBerita($request);
         }
 
         $berita->update($data);

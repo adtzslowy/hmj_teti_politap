@@ -40,11 +40,11 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Email</label>
-                                        <input type="text" name="email" class="form-control" value="{{ old('email', $admin->email) }}">
+                                        <input type="email" name="email" class="form-control" value="{{ old('email', $admin->email) }}">
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="text" name="password" class="form-control">
+                                        <input type="password" name="password" class="form-control">
                                     </div>
                                     <div class="mb-3">
                                         <label for="foto_profil" class="form-label">Profile Picture</label>
