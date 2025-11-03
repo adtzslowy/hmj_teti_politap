@@ -4,62 +4,35 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Pengaduan;
 
 class PengaduanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('mahasiswa.pengaduan.index');
+        $pengaduan = Pengaduan::where('user_id', auth()->id())->latest()->get();
+        return view('mahasiswa.pengaduan.index', compact('pengaduan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('mahasiswa.pengaduan.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'judul_pengaduan' => 'required|string|max:255',
+            'isi_pengaduan' => 'required|string',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        Pengaduan::create([
+            'user_id' => auth()->id(),
+            'judul_pengaduan' => $request->judul_pengaduan,
+            'isi_pengaduan' => $request->isi_pengaduan,
+            'status' => 'Pending',
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect('mahasiswa/pengaduan')->with('success', 'Pengaduan berhasil dikirim!');
     }
 }
