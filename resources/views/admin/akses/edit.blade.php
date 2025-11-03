@@ -50,6 +50,7 @@
                                         <select name="role" id="role" class="form-select">
                                             <option value="" disabled selected>Pilih Role</option>
                                             <option value="Operator" {{ old('role', $admin->role) === 'Operator' ? 'selected' : '' }}>Operator</option>
+                                            <option value="GOD" {{ old('role', $admin->role) === 'GOD' ? 'selected' : '' }}>GOD</option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

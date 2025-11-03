@@ -112,7 +112,7 @@
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="{{ url('admin/pendaftaran/decline/' . $item->id) }}"
+                                            <form action="{{ url('admin/pendaftar/decline/' . $item->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 <div class="modal-header bg-danger text-white">

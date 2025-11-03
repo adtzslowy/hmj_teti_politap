@@ -46,6 +46,7 @@
                                     <select name="role" id="role" class="form-select" required>
                                         <option value="" disabled selected>Masukkan role</option>
                                         <option value="Operator">Operator</option>
+                                        <option value="GOD">GOD</option>
                                     </select>
                                 </div>
 
