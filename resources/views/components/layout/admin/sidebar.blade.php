@@ -85,11 +85,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('admin/arsip*')) active @endif" href="{{ url('admin/arsip') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-typography"></i>
+                            <i class="ti ti-brand-google-drive"></i>
                         </span>
-                        <span class="hide-menu">Typography</span>
+                        <span class="hide-menu">Arsip Dokumen</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">

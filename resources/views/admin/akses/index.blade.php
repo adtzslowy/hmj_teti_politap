@@ -19,8 +19,8 @@
             </div>
 
             <div class="card px-3 py-3 table table-responsive overflow-auto">
-                <table class="table table-borderless align-middle">
-                    <thead class="table-light">
+                <table class="table table-borderless align-middle text-center">
+                    <thead class="table-light ">
                         <tr>
                             <th>No</th>
                             <th>Aksi</th>
@@ -34,7 +34,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td class="d-flex justify-content-center flex-wrap gap-1">
-                                    <a href="{{ url('admin/berita/edit/' . $item['id']) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ url('admin/tambah-admin/edit/' . $item['id']) }}" class="btn btn-sm btn-warning">
                                         <i class="fs-3 ti ti-edit"></i>
                                     </a>
                                     <form action="{{ url('admin/tambah-admin/delete/'. $item['id']) }}" class="d-inline" method="POST">
@@ -48,10 +48,18 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->role }}</td>
+                                <td>
+                                    <span class="badge {{ $item->role === 'GOD' ? 'bg-success' : 'bg-dark'}}  text-white">
+                                        {{ ucfirst($item->role) }}
+                                    </span>
+                                </td>
                             </tr>
                         @empty
-
+                            <tr>
+                                <td class="text-muted" colspan="7">
+                                    Data tidak ditemukan
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

@@ -36,7 +36,8 @@
                                                 <i class="ti ti-x"></i> Decline
                                             </button>
                                         @else
-                                            <form action="{{ url('admin/pendaftar/delete/' . $item->id) }}" method="POST">
+                                            @if (Auth::user()->role === 'GOD')
+                                                <form action="{{ url('admin/pendaftar/delete/' . $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
 
@@ -44,6 +45,9 @@
                                                     <i class="ti ti-trash"></i>
                                                 </button>
                                             </form>
+                                            @else
+                                                <p class="text-muted">-</p>
+                                            @endif
                                         @endif
                                     </td>
 

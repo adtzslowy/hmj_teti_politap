@@ -2162,6 +2162,10 @@
   content: "\f297";
 }
 
+.ti-harddrive:before {
+	content: "\e69f";
+}
+
 .ti-brand-google-one:before {
   content: "\f232";
 }

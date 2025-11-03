@@ -29,7 +29,7 @@
 
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label">Deskripsi Berita</label>
-                                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="7" placeholder="Masukkan isi berita disini!" required>{{ old('deskripsi') }}</textarea>
+                                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="7" placeholder="Masukkan isi berita disini!" required>{{ request('deskripsi') }}</textarea>
                             </div>
 
                             <div class="mb-3">

@@ -42,7 +42,11 @@
                                     </tr>
                                     <tr>
                                         <td class="fw-medium text-muted">Role</td>
-                                        <td>{{ $admin->role }}</td>
+                                        <td>
+                                            <span class="badge {{ $admin['role'] === 'GOD' ? 'bg-success' : 'bg-dark' }} text-white">
+                                                {{ ucfirst($admin['role']) }}
+                                            </span>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
