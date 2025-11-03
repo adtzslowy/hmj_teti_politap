@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('mahasiswa/pengaduan-anggota') }}" class="sidebar-link @if (request()->is('mahasiswa/pendaftaran-anggota*')) active @endif" aria-expanded="false">
+                    <a href="{{ url('mahasiswa/pengaduan-anggota') }}" class="sidebar-link @if (request()->is('mahasiswa/pengaduan-anggota*')) active @endif" aria-expanded="false">
                         <span>
                             <i class="ti ti-receipt"></i>
                         </span>

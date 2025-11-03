@@ -1,11 +1,18 @@
 <x-mahasiswa>
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card shadow-sm p-4">
-                    <h4 class="mb-4">Buat Pengaduan Baru</h4>
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark">
+                <h3 class="mb-0 text-white">Form Pengaduan Anggota HMJ</h3>
+            </div>
 
-                    <form action="{{ url('mahasiswa/pengaduan') }}" method="POST">
+            <div class="card-body">
+                @if ($errors->any())
+                    @foreach ($errors->all() as $err)
+                        <div class="alert alert-danger">{{ $err }}</div>
+                    @endforeach
+                @endif
+
+                <form action="{{ url('mahasiswa/pengaduan-anggota') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
@@ -29,14 +36,14 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ url('mahasiswa/pengaduan') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ url('mahasiswa/pengaduan-anggota') }}" class="btn btn-secondary">Kembali</a>
                             <button type="submit" class="btn btn-dark">
                                 <i class="ti ti-send"></i> Kirim Pengaduan
                             </button>
                         </div>
                     </form>
-                </div>
             </div>
         </div>
     </div>
 </x-mahasiswa>
+

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-3 d-flex justify-content-between">
             <div class="col-12 col-md-12 mb-2">
-                <a href="{{ url('mahasiswa/pengaduan/create') }}" class="btn btn-dark">
+                <a href="{{ url('mahasiswa/pengaduan-anggota/create') }}" class="btn btn-dark">
                     <i class="ti ti-plus"></i> Buat Pengaduan
                 </a>
             </div>
@@ -20,13 +20,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($pengaduan as $item)
+                        {{-- @forelse ($pengaduan as $item) --}}
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->judul_pengaduan ?? '-' }}</td>
-                                <td>{{ Str::limit($item->isi_pengaduan, 50) ?? '-' }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
-                                    @if ($item->status == 'Pending')
+                                    {{-- @if ($item->status == 'Pending')
                                         <span class="badge bg-warning text-dark">Pending</span>
                                     @elseif ($item->status == 'Diterima')
                                         <span class="badge bg-success text-dark">Diterima</span>
@@ -34,18 +34,18 @@
                                         <span class="badge bg-primary text-dark">Diproses</span>
                                     @else
                                         <span class="badge bg-danger text-dark">Ditolak</span>
-                                    @endif
+                                    @endif --}}
                                 </td>
-                                <td>{{ $item->tanggapan ?? '-' }}</td>
-                                <td>{{ $item->created_at->format('d M Y') }}</td>
+                                <td></td>
+                                <td></td>
                             </tr>
-                        @empty
+                        {{-- @empty
                             <tr>
                                 <td colspan="6" class="text-center text-muted">
                                     Belum ada data pengaduan.
                                 </td>
                             </tr>
-                        @endforelse
+                        @endforelse --}}
                     </tbody>
                 </table>
             </div>
