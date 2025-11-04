@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -54,6 +55,12 @@ class DashboardController extends Controller
         }
 
         $mahasiswa->update($data);
+
+        // Update session if the logged-in user is updating their own profile
+        if (Auth::guard('mahasiswa')->id() === $mahasiswa->id) {
+            Auth::guard('mahasiswa')->login($mahasiswa);
+        }
+
         return redirect('mahasiswa/profile')->with('success', 'Informasi mahasiswa berhasil diperbaharui');
     }
 }
