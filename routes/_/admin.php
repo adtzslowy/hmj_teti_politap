@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PendaftaranAnggotaController;
+use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,10 @@ Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function 
 
 Route::prefix('arsip')->group(function() {
     Route::get('/', [ArsipController::class, 'index']);
+});
+
+Route::prefix('pengaduan')->group(function() {
+    Route::get('/', [PengaduanController::class, 'index']);
 });
 
 Route::prefix('anggota')->group(function () {
