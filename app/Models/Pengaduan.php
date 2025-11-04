@@ -10,43 +10,29 @@ class Pengaduan extends Model
 {
     use HasFactory;
 
-    /**
-     * Karena id bertipe CHAR(36)/UUID, bukan auto-increment.
-     */
-    public $incrementing = false;
-
-    /**
-     * ID-nya berupa string, bukan integer.
-     */
+    protected $table = 'pengaduan';
+    public $incrementing = false; // karena id bukan auto increment
     protected $keyType = 'string';
 
     protected $fillable = [
-        'user_id',
+        'id',
+        'mahasiswa_id',
         'judul_pengaduan',
         'isi_pengaduan',
         'status',
         'tanggapan',
     ];
 
-    /**
-     * Generate UUID otomatis saat data dibuat.
-     */
-    protected static function boot()
+    public static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
-            if (! $model->id) {
-                $model->id = (string) Str::uuid();
-            }
+            $model->id = (string) Str::uuid();
         });
     }
 
-    /**
-     * Relasi ke tabel users
-     */
-    public function mhs()
+    public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
     }
 }

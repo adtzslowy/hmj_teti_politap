@@ -20,32 +20,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @forelse ($pengaduan as $item) --}}
+                        @forelse ($pengaduan as $index => $item)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $item->judul_pengaduan }}</td>
+                                <td>{{ Str::limit($item->isi_pengaduan, 50) }}</td>
                                 <td>
-                                    {{-- @if ($item->status == 'Pending')
+                                    @if ($item->status == 'Pending')
                                         <span class="badge bg-warning text-dark">Pending</span>
-                                    @elseif ($item->status == 'Diterima')
-                                        <span class="badge bg-success text-dark">Diterima</span>
                                     @elseif ($item->status == 'Diproses')
                                         <span class="badge bg-primary text-dark">Diproses</span>
-                                    @else
-                                        <span class="badge bg-danger text-dark">Ditolak</span>
-                                    @endif --}}
+                                    @elseif ($item->status == 'Selesai')
+                                        <span class="badge bg-success text-dark">Selesai</span>
+                                    @endif
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ $item->tanggapan ?? '-' }}</td>
+                                <td>{{ $item->created_at->format('d M Y') }}</td>
                             </tr>
-                        {{-- @empty
+                        @empty
                             <tr>
                                 <td colspan="6" class="text-center text-muted">
                                     Belum ada data pengaduan.
                                 </td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
                     </tbody>
                 </table>
             </div>
