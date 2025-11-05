@@ -13,7 +13,7 @@
                         <input type="text" name="search" class="form-control" placeholder="Cari judul berita!" value="{{ request('search') }}">
                         <button class="btn btn-dark" type="submit">
                             <i class="ti ti-search"></i>
-                        </button>
+                        </button>   
                     </div>
                 </form>
             </div>
