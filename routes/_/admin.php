@@ -46,12 +46,12 @@ Route::prefix('arsip')->group(function () {
     Route::delete('/delete/{id}', [ArsipController::class, 'destroy']); 
 });
 
-<<<<<<< Updated upstream
+
 Route::prefix('pengaduan')->group(function() {
     Route::get('/', [PengaduanController::class, 'index']);
 });
-=======
->>>>>>> Stashed changes
+
+
 
 Route::prefix('anggota')->group(function () {
     Route::get('/', [AnggotaController::class, 'index']);
