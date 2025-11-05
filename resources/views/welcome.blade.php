@@ -94,8 +94,8 @@
     </ul>
 
   <div class="pb-6 text-center">
-    <a href="{{ route('login_mhs') }}" 
-      class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">
+    <a href="{{ route('login_mhs') }}"
+      class="bg-primary text-white px-6 py-3 rounded font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">
       Login
     </a>
   </div>
@@ -223,7 +223,7 @@
       <p class="max-w-2xl mx-auto text-gray-600 mb-8 fade-up">
         Platform untuk mahasiswa menyampaikan aspirasi, keluhan, dan saran terkait kegiatan HMJ TETI POLITAP.
       </p>
-      <a href="{{ route('login_mhs') }}" class="bg-primary bg-white text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
+      <a href="{{ route('login_mhs') }}" class="bg-dark bg-white text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
     </div>
   </section>
 
