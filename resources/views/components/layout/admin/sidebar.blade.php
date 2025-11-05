@@ -93,7 +93,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link @if (request()->is('admin/pengaduan*')) active @endif" href="{{ url('admin/arsip') }}" aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('admin/pengaduan-mahasiswa*')) active @endif" href="{{ url('admin/pengaduan-mahasiswa') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-layers-linked"></i>
                         </span>

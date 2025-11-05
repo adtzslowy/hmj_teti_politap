@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Pengaduan;
 
 class PengaduanController extends Controller
 {
@@ -12,54 +13,32 @@ class PengaduanController extends Controller
      */
     public function index()
     {
-        return view('admin.pengaduan.index');
+        $pengaduan = Pengaduan::with('mahasiswa')
+                   ->latest()
+                   ->paginate(10);
+        return view('admin.pengaduan.index', compact('pengaduan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function proses(Request $request, string $id)
     {
-        return view('admin.pengaduan.create');
+        $pengaduan = Pengaduan::findOrFail($id);
+        $pengaduan->update([
+            'status' => 'Diproses',
+            'tanggapan' => $request->tanggapan
+        ]);
+
+        return redirect()->back()->with('success', 'Pengaduan sedang diproses');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function selesai(Request $request, string $id)
     {
-        //
+        $pengaduan = Pengaduan::findOrFail($id);
+        $pengaduan->update([
+            'status' => 'Selesai',
+            'tanggapan' => $request->tanggapan
+        ]);
+
+        return redirect()->back()->with('success', 'Pengaduan telah selesai');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

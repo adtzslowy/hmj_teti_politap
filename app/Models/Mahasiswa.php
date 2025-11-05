@@ -46,8 +46,8 @@ class Mahasiswa extends Authenticatable
         return $this->hasOne(Pendaftaran::class, 'mahasiswa_id');
     }
 
-    public function aduan()
+    public function aduanMahasiswa()
     {
-        return $this->hasMany(Pengaduan::class,'mahasiswa_id');
+        return $this->hasMany(Pengaduan::class,'mahasiswa_id', 'id');
     }
 }

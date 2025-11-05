@@ -38,7 +38,11 @@
                                 <td>{{ $item->created_at->format('d M Y') }}</td>
                             </tr>
                         @empty
-
+                            <tr>
+                                <td class="justify-content-center fw-italic" colspan="7">
+                                    Data Tidak Ditemukan
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
