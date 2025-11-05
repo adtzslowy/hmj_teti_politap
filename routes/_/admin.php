@@ -51,8 +51,6 @@ Route::prefix('pengaduan-mahasiswa')->group(function() {
     Route::get('/', [PengaduanController::class, 'index']);
 });
 
-
-
 Route::prefix('anggota')->group(function () {
     Route::get('/', [AnggotaController::class, 'index']);
     Route::get('/create', [AnggotaController::class, 'create']);
