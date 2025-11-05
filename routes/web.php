@@ -15,7 +15,7 @@ Route::prefix('mahasiswa',)->middleware('auth:mahasiswa')->group(function () {
 });
 
 Route::get('auth/login/admin', [AuthController::class, 'loginAdmin'])->name('login');
-Route::get('auth/login/mahasiswa', [AuthController::class, 'loginMahasiswa'])->name('login');
+Route::get('auth/login/mahasiswa', [AuthController::class, 'loginMahasiswa'])->name('login_mhs');
 Route::post('auth/login/admin', [AuthController::class, 'loginProsesAdmin']);
 Route::post('auth/login/mahasiswa', [AuthController::class, 'loginProsesMahasiswa']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');

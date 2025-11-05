@@ -70,7 +70,7 @@
 
     <!-- Tombol Login -->
     <div class="hidden md:block">
-      <a href="{{ route('login') }}" class="bg-primary text-white px-5 py-2 rounded-full font-semibold hover:bg-secondary transition">Login</a>
+      <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Login</a>
     </div>
 
     <!-- Tombol Mobile -->
@@ -93,12 +93,12 @@
       <li><a href="#contact" class="hover:text-primary" @click="mobileMenuOpen=false">Kontak</a></li>
     </ul>
 
-<div class="pb-6 text-center">
-  <a href="{{ route('login') }}" 
-     class="bg-[#2a3547] text-white px-6 py-2 rounded-full font-semibold transition duration-300 hover:bg-[#2a3547] hover:text-white">
-     Login
-  </a>
-</div>
+  <div class="pb-6 text-center">
+    <a href="{{ route('login_mhs') }}" 
+      class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">
+      Login
+    </a>
+  </div>
 
 
 
@@ -211,7 +211,7 @@
         @endforelse
       </div>
       <div class="text-center mt-10">
-        <a href="{{ route('login') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Lihat Semua Berita</a>
+        <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Lihat Semua Berita</a>
       </div>
     </div>
   </section>
@@ -223,7 +223,7 @@
       <p class="max-w-2xl mx-auto text-gray-600 mb-8 fade-up">
         Platform untuk mahasiswa menyampaikan aspirasi, keluhan, dan saran terkait kegiatan HMJ TETI POLITAP.
       </p>
-      <a href="{{ route('login') }}" class="bg-primary bg-white text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
+      <a href="{{ route('login_mhs') }}" class="bg-primary bg-white text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
     </div>
   </section>
 
