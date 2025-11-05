@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PendaftaranAnggotaController;
+use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,9 +36,22 @@ Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function 
     Route::delete('/delete/{id}', [TambahAdminController::class,  'destroy']);
 });
 
-Route::prefix('arsip')->group(function() {
-    Route::get('/', [ArsipController::class, 'index']);
+Route::prefix('arsip')->group(function () {
+    Route::get('/', [ArsipController::class, 'index']);        
+    Route::get('/create', [ArsipController::class, 'create']); 
+    Route::post('/', [ArsipController::class, 'store']);       
+    Route::get('/show/{id}', [ArsipController::class, 'show']); 
+    Route::get('/edit/{id}', [ArsipController::class, 'edit']); 
+    Route::put('/{id}', [ArsipController::class, 'update']);    
+    Route::delete('/delete/{id}', [ArsipController::class, 'destroy']); 
 });
+
+<<<<<<< Updated upstream
+Route::prefix('pengaduan')->group(function() {
+    Route::get('/', [PengaduanController::class, 'index']);
+});
+=======
+>>>>>>> Stashed changes
 
 Route::prefix('anggota')->group(function () {
     Route::get('/', [AnggotaController::class, 'index']);

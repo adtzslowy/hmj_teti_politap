@@ -19,6 +19,11 @@ class Admin extends Authenticatable
         "role",
     ];
 
+    public function arsip()
+    {
+        return $this->hasMany(Arsip::class, 'user_id');
+    }
+
     public $incrementing = false;
 
     public function photoPath($request)
