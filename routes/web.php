@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 Route::prefix('admin')->middleware(['auth:admin', 'role:GOD,Operator'])->group(function () {
     include __DIR__ . "/_/admin.php";
