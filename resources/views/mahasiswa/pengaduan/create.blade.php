@@ -12,7 +12,7 @@
                     @endforeach
                 @endif
 
-                <form action="{{ url('mahasiswa/pengaduan-anggota') }}" method="POST">
+                <form action="{{ url('mahasiswa/pengaduan-anggota') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -26,11 +26,19 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="isi_pengaduan" class="form-label">Isi Pengaduan</label>
-                            <textarea name="isi_pengaduan" id="isi_pengaduan" rows="5"
-                                class="form-control @error('isi_pengaduan') is-invalid @enderror"
-                                required>{{ old('isi_pengaduan') }}</textarea>
-                            @error('isi_pengaduan')
+                            <label for="deskripsi" class="form-label">Isi Pengaduan</label>
+                            <textarea name="deskripsi" id="deskripsi" rows="5"
+                                class="form-control @error('deskripsi') is-invalid @enderror"
+                                required>{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="bukti_aduan" class="form-label">Bukti Aduan</label>
+                            <input type="file" class="form-control" name="bukti_aduan" required>
+                            @error('bukti_auduan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -46,4 +54,3 @@
         </div>
     </div>
 </x-mahasiswa>
-

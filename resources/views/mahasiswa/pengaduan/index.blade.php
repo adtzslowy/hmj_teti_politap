@@ -8,7 +8,7 @@
             </div>
 
             <div class="card px-3 py-3 table table-responsive text-center overflow-auto">
-                <table class="table table-borderless align-middle">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>
@@ -22,9 +22,9 @@
                     <tbody>
                         @forelse ($pengaduan as $index => $item)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $item->judul_pengaduan }}</td>
-                                <td>{{ Str::limit($item->isi_pengaduan, 50) }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-justify text-truncate" style="max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $item->judul_pengaduan }}</td>
+                                <td class="text-justify text-truncate" style="max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ strip_tags($item->deskripsi) }}</td>
                                 <td>
                                     @if ($item->status == 'Pending')
                                         <span class="badge bg-warning text-dark">Pending</span>

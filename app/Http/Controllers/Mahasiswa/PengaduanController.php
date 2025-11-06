@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,11 @@ class PengaduanController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Auth::guard('mahasiswa')->user();
+        $mahasiswa = Auth()->guard('mahasiswa')->user();
 
-        $pengaduan = $mahasiswa->aduan()->latest()->get();
+        $pengaduan = $mahasiswa->aduanMahasiswa()
+                    ->latest()
+                    ->paginate(10);
 
         return view('mahasiswa.pengaduan.index', compact('pengaduan'));
     }
@@ -27,15 +30,17 @@ class PengaduanController extends Controller
     {
         $request->validate([
             'judul_pengaduan' => 'required|string|max:255',
-            'isi_pengaduan' => 'required|string',
+            'deskripsi' => 'required|string',
+            'bukti_aduan' => 'required|image|mimes:png,jpg,jpeg,webp,gif'
         ]);
 
         $mahasiswa = Auth::guard('mahasiswa')->user();
 
-        $mahasiswa->aduan()->create([
+        $mahasiswa->aduanMahasiswa()->create([
             'judul_pengaduan' => $request->judul_pengaduan,
-            'isi_pengaduan' => $request->isi_pengaduan,
+            'deskripsi' => $request->deskripsi,
             'status' => 'Pending',
+            'bukti_aduan' => $request->bukti_aduan,
         ]);
 
         return redirect('mahasiswa/pengaduan-anggota')->with('success', 'Pengaduan berhasil dikirim');

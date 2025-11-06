@@ -8,7 +8,7 @@
             </div>
 
             <div class="card px-3 py-3 table table-responsive text-center overflow-auto">
-                <table class="table table-borderless align-middle">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>
@@ -38,7 +38,11 @@
                                 <td>{{ $item->created_at->format('d M Y') }}</td>
                             </tr>
                         @empty
-
+                            <tr>
+                                <td class="justify-content-center fw-italic" colspan="7">
+                                    Data Tidak Ditemukan
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>

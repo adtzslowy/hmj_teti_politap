@@ -11,16 +11,17 @@ class Pengaduan extends Model
     use HasFactory;
 
     protected $table = 'pengaduan';
-    public $incrementing = false; // karena id bukan auto increment
+    public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
         'id',
         'mahasiswa_id',
         'judul_pengaduan',
-        'isi_pengaduan',
+        'deskripsi',
         'status',
         'tanggapan',
+        'bukti_aduan'
     ];
 
     public static function boot()
