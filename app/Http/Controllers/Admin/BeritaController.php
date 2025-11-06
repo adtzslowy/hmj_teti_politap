@@ -38,7 +38,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'dokumentasi' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
+            'dokumentasi' => 'required|image|mimes:png,jpg,jpeg,webp|max:4096',
             'tanggal_post' => 'required|date',
         ]);
 

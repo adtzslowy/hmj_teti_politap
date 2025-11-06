@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HMJ TETI POLITAP | Himpunan Mahasiswa Jurusan Teknik Elektro & Teknik Informatika</title>
-  <link rel="icon" href="{{ asset('source/assets/images/logos/favicon.png') }}">
+  <link rel="icon" type="image/png" href="{{ asset('source/assets/images/logos/favicon.png') }}">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -59,18 +59,18 @@
     <!-- Desktop Menu (tengah) -->
     <div class="hidden md:flex flex-1 justify-center">
       <ul class="flex space-x-8 font-semibold">
-        <li><a href="#home" class="hover:text-primary">Beranda</a></li>
-        <li><a href="#about" class="hover:text-primary">Tentang</a></li>
-        <li><a href="#activities" class="hover:text-primary">Kegiatan</a></li>
-        <li><a href="#news" class="hover:text-primary">Berita</a></li>
-        <li><a href="#complaints" class="hover:text-primary">Pengaduan</a></li>
-        <li><a href="#contact" class="hover:text-primary">Kontak</a></li>
+        <li><a href="#home" class="hover:text-red-500 transition-all duration-300">Beranda</a></li>
+        <li><a href="#about" class="hover:text-red-500 transition-all duration-300 ">Tentang</a></li>
+        <li><a href="#activities" class="hover:text-red-500 transition-all duration-300 ">Kegiatan</a></li>
+        <li><a href="#news" class="hover:text-red-500 transition-all duration-300 ">Berita</a></li>
+        <li><a href="#complaints" class="hover:text-red-500 transition-all duration-300 ">Pengaduan</a></li>
+        <li><a href="#contact" class="hover:text-red-500 transition-all duration-300 ">Kontak</a></li>
       </ul>
     </div>
 
     <!-- Tombol Login -->
     <div class="hidden md:block">
-      <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Login</a>
+      <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Masuk</a>
     </div>
 
     <!-- Tombol Mobile -->
@@ -85,12 +85,12 @@
   <!-- Mobile Menu -->
   <div x-show="mobileMenuOpen" x-transition x-cloak class="md:hidden bg-gray-100 shadow-inner">
     <ul class="flex flex-col items-center space-y-4 py-4 font-medium">
-      <li><a href="#home" class="hover:text-primary" @click="mobileMenuOpen=false">Beranda</a></li>
-      <li><a href="#about" class="hover:text-primary" @click="mobileMenuOpen=false">Tentang</a></li>
-      <li><a href="#activities" class="hover:text-primary" @click="mobileMenuOpen=false">Kegiatan</a></li>
-      <li><a href="#news" class="hover:text-primary" @click="mobileMenuOpen=false">Berita</a></li>
-      <li><a href="#complaints" class="hover:text-primary" @click="mobileMenuOpen=false">Pengaduan</a></li>
-      <li><a href="#contact" class="hover:text-primary" @click="mobileMenuOpen=false">Kontak</a></li>
+      <li><a href="#home" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Beranda</a></li>
+      <li><a href="#about" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Tentang</a></li>
+      <li><a href="#activities" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Kegiatan</a></li>
+      <li><a href="#news" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Berita</a></li>
+      <li><a href="#complaints" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Pengaduan</a></li>
+      <li><a href="#contact" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Kontak</a></li>
     </ul>
 
   <div class="pb-6 text-center">
@@ -113,7 +113,7 @@
   <br>
   <section id="home" class="pt-40 pb-40 bg-gradient-to-r from-primary to-secondary text-white text-center">
     <div class="container mx-auto px-6">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-up">HMJ TETI POLITAP</h1>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-up"><span class="text-red-500">HMJ TETI</span> POLITAP</h1>
       <p class="text-lg md:text-xl mb-8 fade-up">Himpunan Mahasiswa Jurusan Teknik Elektro dan Teknik Informatika<br>Politeknik Negeri Ketapang</p>
       <a href="#about" class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Pelajari Lebih Lanjut</a>
     </div>
@@ -223,7 +223,7 @@
       <p class="max-w-2xl mx-auto text-gray-600 mb-8 fade-up">
         Platform untuk mahasiswa menyampaikan aspirasi, keluhan, dan saran terkait kegiatan HMJ TETI POLITAP.
       </p>
-      <a href="{{ route('login_mhs') }}" class="bg-dark bg-white text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
+      <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Ajukan Pengaduan</a>
     </div>
   </section>
 
@@ -232,11 +232,10 @@
     <div class="container mx-auto text-center">
       <h3 class="text-xl font-semibold mb-2">HMJ TETI POLITAP</h3>
       <p>Politeknik Negeri Ketapang</p>
-      <p class="mt-2 text-sm">Jl. Ir. M. Putuhena, Ketapang, Kalimantan Barat</p>
+      <p class="mt-2 text-sm">Jl. Rangge Sentap, Dalong, Ketapang, Kalimantan Barat</p>
       <div class="flex justify-center space-x-6 mt-4">
-        <a href="#" class="hover:text-gray-300">Instagram</a>
-        <a href="#" class="hover:text-gray-300">YouTube</a>
-        <a href="#" class="hover:text-gray-300">Email</a>
+        <a href="https://www.instagram.com/hmjteti_teknologiinformasi/" class="hover:text-gray-300">Instagram</a>
+        <a href="https://www.youtube.com/@prodi-teknologi-informasi/" class="hover:text-gray-300">YouTube</a>
       </div>
       <p class="mt-6 text-sm text-gray-200">© {{ date('Y') }} HMJ TETI POLITAP. All rights reserved.</p>
     </div>

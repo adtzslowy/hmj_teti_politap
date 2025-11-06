@@ -8,9 +8,10 @@
             </div>
 
             <div class="card px-3 py-3 table table-responsive text-center overflow-auto">
-                <table class="table table-borderless align-middle">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
+                            <th>No</th>
                             <th>Judul Pengaduan</th>
                             <th>Isi Pengaduan</th>
                             <th>Status</th>
@@ -21,7 +22,7 @@
                     <tbody>
                         @forelse ($pengaduan as $index => $item)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td class="text-justify text-truncate" style="max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $item->judul_pengaduan }}</td>
                                 <td class="text-justify text-truncate" style="max-width: 400px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ strip_tags($item->deskripsi) }}</td>
                                 <td>

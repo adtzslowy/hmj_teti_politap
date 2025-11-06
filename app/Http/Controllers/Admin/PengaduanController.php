@@ -19,26 +19,15 @@ class PengaduanController extends Controller
         return view('admin.pengaduan.index', compact('pengaduan'));
     }
 
-    public function proses(Request $request, string $id)
+    public function update(Request $request, string $id)
     {
         $pengaduan = Pengaduan::findOrFail($id);
         $pengaduan->update([
-            'status' => 'Diproses',
-            'tanggapan' => $request->tanggapan
+            'status' => $request->status,
+            'tanggapan' => $request->tanggapan,
         ]);
 
-        return redirect()->back()->with('success', 'Pengaduan sedang diproses');
-    }
-
-    public function selesai(Request $request, string $id)
-    {
-        $pengaduan = Pengaduan::findOrFail($id);
-        $pengaduan->update([
-            'status' => 'Selesai',
-            'tanggapan' => $request->tanggapan
-        ]);
-
-        return redirect()->back()->with('success', 'Pengaduan telah selesai');
+        return redirect()->back()->with('success', 'Status pengaduan berhasil diperbaharui.');
     }
 
 }
