@@ -37,11 +37,11 @@ Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function 
 });
 
 Route::prefix('arsip')->group(function () {
-    Route::get('/', [ArsipController::class, 'index']);
+    Route::get('/', [ArsipController::class, 'index'])->name('arsip.index');
     Route::get('/create', [ArsipController::class, 'create']);
     Route::post('/', [ArsipController::class, 'store']);
     Route::get('/show/{id}', [ArsipController::class, 'show']);
-    Route::get('/edit/{id}', [ArsipController::class, 'edit']);
+    Route::get('/edit/{id}', [ArsipController::class, 'edit'])->name('arsip.edit');
     Route::put('/{id}', [ArsipController::class, 'update']);
     Route::delete('/delete/{id}', [ArsipController::class, 'destroy']);
 });

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Arsip extends Model
 {
     protected $table = 'arsip';
+    public $incrementing = false;
 
     protected $fillable = [
         'user_id',
@@ -23,6 +24,14 @@ class Arsip extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'user_id', 'id');
+    }
+
+    public static function uuid()
+    {
+        parent::uuid();
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+        }) ;
     }
 
     protected static function boot()
