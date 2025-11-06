@@ -19,38 +19,77 @@
                     <tbody>
                         @foreach ($pengaduan as $item)
                             <tr>
-                                <td>
-                                    <form action="{{ url('admin/pengaduan-mahasiswa', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <select name="status" class="form-select form-select-sm">
-                                            <option value="Diproses"
-                                                {{ $item->status == 'Diproses' ? 'selected' : '' }}>Diproses</option>
-                                            <option value="Selesai" {{ $item->status == 'Selesai' ? 'selected' : '' }}>
-                                                Selesai</option>
-                                        </select>
-                                        <textarea name="tanggapan" class="form-control form-control-sm mt-1" placeholder="Tulis tanggapan...">{{ $item->tanggapan }}</textarea>
-                                        <button type="submit" class="btn btn-sm btn-primary mt-1">Simpan</button>
-                                    </form>
+                                <td class="d-flex justify-content-center gap-1">
+                                    <!-- Tombol Proses / Selesai -->
+                                    <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#modalProses{{ $item->id }}">
+                                        <i class="fs-3 ti ti-archive"></i>
+                                    </button>
+                                    <a href="{{ url('admin/pengaduan-mahasiswa/detail/' . $item->id) }}" class="btn btn-info btn-sm">
+                                        <i class="fs-3 ti ti-eye "></i>
+                                    </a>
                                 </td>
-                                <td>{{ $item->judul_pengaduan }}</td>
-                                <td class="text-justify text-truncate" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                    {{ strip_tags($item->deskripsi) }}
-                                </td>
+                                <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $item->judul_pengaduan }}</td>
+                                <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ strip_tags($item->deskripsi) }}</td>
                                 <td>
                                     @if ($item->status == 'Pending')
                                         <span class="badge bg-warning text-dark">Pending</span>
                                     @elseif ($item->status == 'Diproses')
-                                        <span class="badge bg-primary text-dark">Diproses</span>
+                                        <span class="badge bg-secondary text-dark">Diproses</span>
                                     @elseif ($item->status == 'Selesai')
                                         <span class="badge bg-success text-dark">Selesai</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->tanggapan ?? '-' }}</td>
+                                <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $item->tanggapan ?? '-' }}</td>
                                 <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
                             </tr>
+
+                            <!-- Modal Update Status -->
+                            <div class="modal fade" id="modalProses{{ $item->id }}" tabindex="-1"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Proses Pengaduan</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ url('admin/pengaduan-mahasiswa', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Status</label>
+                                                    <select name="status" class="form-select">
+                                                        <option value="Diproses"
+                                                            {{ $item->status == 'Diproses' ? 'selected' : '' }}>Diproses
+                                                        </option>
+                                                        <option value="Selesai"
+                                                            {{ $item->status == 'Selesai' ? 'selected' : '' }}>Selesai
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tanggapan</label>
+                                                    <textarea name="tanggapan" class="form-control" rows="3" placeholder="Tuliskan tanggapan...">{{ $item->tanggapan }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-dark"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="ti ti-x"></i> Tutup
+                                                </button>
+                                                <button type="submit" class="btn btn-dark">
+                                                    <i class="ti ti-check"></i> Simpan Perubahan
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
+
                 </table>
             </div>
         </div>

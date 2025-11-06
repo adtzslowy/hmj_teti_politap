@@ -19,6 +19,13 @@ class PengaduanController extends Controller
         return view('admin.pengaduan.index', compact('pengaduan'));
     }
 
+    public function show(string $id)
+    {
+        $pengaduan = Pengaduan::findOrFail($id);
+        return view('admin.pengaduan.show', compact('pengaduan'));
+    }
+
+
     public function update(Request $request, string $id)
     {
         $pengaduan = Pengaduan::findOrFail($id);

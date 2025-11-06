@@ -49,6 +49,7 @@ Route::prefix('arsip')->group(function () {
 
 Route::prefix('pengaduan-mahasiswa')->group(function() {
     Route::get('/', [PengaduanController::class, 'index']);
+    Route::get('/detail/{id}', [PengaduanController::class,'show']);
     Route::put('/{id}', [PengaduanController::class, 'update']);
 });
 
