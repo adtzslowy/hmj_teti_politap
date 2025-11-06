@@ -45,8 +45,8 @@
             </div>
 
             <div class="card-footer text-end">
-                <a href="{{ route('arsip.index') }}" class="btn btn-secondary btn-sm">Kembali</a>
-                <a href="{{ route('arsip.edit', $arsip->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{{ url('index') }}" class="btn btn-secondary btn-sm">Kembali</a>
+                <a href="{{ url('edit', $arsip->id) }}" class="btn btn-warning btn-sm">Edit</a>
             </div>
         </div>\
     </div>
