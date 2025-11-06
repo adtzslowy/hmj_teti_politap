@@ -21,7 +21,7 @@ class Admin extends Authenticatable
 
     public function arsip()
     {
-        return $this->hasMany(Arsip::class, 'user_id');
+        return $this->hasMany(Arsip::class, 'user_id', 'id');
     }
 
     public $incrementing = false;

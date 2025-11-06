@@ -22,14 +22,17 @@
                         @endphp
 
                         @if(in_array(strtolower($ext), ['pdf']))
-                            <iframe src="{{ asset('storage/' . $arsip->file) }}" width="100%" height="500px"></iframe>
+                            <iframe src="{{ asset('storage/arsip/' . $arsip->file) }}" width="100%" height="500px"></iframe>
                         @elseif(in_array(strtolower($ext), ['doc', 'docx', 'xls', 'xlsx']))
-                            <a href="{{ asset('storage/' . $arsip->file) }}" target="_blank" class="btn btn-primary btn-sm">
+                            <a href="{{ asset('storage/arsip/' . $arsip->file) }}" target="_blank" class="btn btn-primary btn-sm">
                                 Lihat / Unduh File
                             </a>
                         @else
-                            <p>Tipe file tidak dapat ditampilkan langsung. <a href="{{ asset('storage/' . $arsip->file) }}" target="_blank">Unduh File</a></p>
+                            <p>Tipe file tidak dapat ditampilkan langsung. 
+                                <a href="{{ asset('storage/arsip/' . $arsip->file) }}" target="_blank">Unduh File</a>
+                            </p>
                         @endif
+
                     @else
                         <p class="text-muted">Tidak ada file diunggah.</p>
                     @endif
@@ -40,11 +43,11 @@
                     <p>{{ $arsip->created_at->format('d M Y H:i') }}</p>
                 </div>
             </div>
-e
+
             <div class="card-footer text-end">
                 <a href="{{ route('arsip.index') }}" class="btn btn-secondary btn-sm">Kembali</a>
                 <a href="{{ route('arsip.edit', $arsip->id) }}" class="btn btn-warning btn-sm">Edit</a>
             </div>
-        </div>
+        </div>\
     </div>
 </x-admin>

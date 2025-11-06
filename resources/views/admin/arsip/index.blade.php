@@ -43,7 +43,6 @@
                                         <i class="fs-3 ti ti-eye"></i>
                                     </a>
 
-                                    {{-- Edit/hapus hanya untuk pemilik admin --}}
                                     @if(Auth::guard('admin')->check() && Auth::guard('admin')->id() == $item->user_id)
                                         <a href="{{ url('admin/arsip/edit/' . $item->id) }}" class="btn btn-warning btn-sm text-black">
                                             <i class="fs-3 ti ti-edit"></i>
@@ -68,7 +67,7 @@
                                         <span class="text-muted">Tidak ada file</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->user->name ?? 'Tidak diketahui' }}</td>
+                                <td>{{ $item->admin->name ?? 'Tidak diketahui' }}</td>
                                 <td>{{ $item->created_at->format('d M Y') }}</td>
                             </tr>
                         @empty

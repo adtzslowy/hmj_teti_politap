@@ -36,22 +36,20 @@ Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function 
     Route::delete('/delete/{id}', [TambahAdminController::class,  'destroy']);
 });
 
-Route::prefix('arsip')->group(function () {
-    Route::get('/', [ArsipController::class, 'index']);        
-    Route::get('/create', [ArsipController::class, 'create']); 
-    Route::post('/', [ArsipController::class, 'store']);       
-    Route::get('/show/{id}', [ArsipController::class, 'show']); 
-    Route::get('/edit/{id}', [ArsipController::class, 'edit']); 
-    Route::put('/{id}', [ArsipController::class, 'update']);    
-    Route::delete('/delete/{id}', [ArsipController::class, 'destroy']); 
+Route::prefix('arsip')->name('arsip.')->group(function () {
+    Route::get('/', [ArsipController::class, 'index'])->name('index');        
+    Route::get('/create', [ArsipController::class, 'create'])->name('create'); 
+    Route::post('/', [ArsipController::class, 'store'])->name('store');       
+    Route::get('/show/{id}', [ArsipController::class, 'show'])->name('show'); 
+    Route::get('/edit/{id}', [ArsipController::class, 'edit'])->name('edit'); 
+    Route::put('/{id}', [ArsipController::class, 'update'])->name('update');    
+    Route::delete('/delete/{id}', [ArsipController::class, 'destroy'])->name('destroy'); 
 });
 
-<<<<<<< Updated upstream
+
 Route::prefix('pengaduan')->group(function() {
     Route::get('/', [PengaduanController::class, 'index']);
 });
-=======
->>>>>>> Stashed changes
 
 Route::prefix('anggota')->group(function () {
     Route::get('/', [AnggotaController::class, 'index']);

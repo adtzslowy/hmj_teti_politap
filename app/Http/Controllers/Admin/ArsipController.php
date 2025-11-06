@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Arsip;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -33,30 +34,31 @@ class ArsipController extends Controller
 
     public function store(Request $request)
     {
-        if (!Auth::guard('admin')->check()) {
-            abort(403, 'Hanya admin yang dapat mengunggah arsip.');
-        }
-
         $request->validate([
             'nama_dokumen' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'file' => 'required|mimes:pdf,doc,docx,xls,xlsx|max:5120',
+            'deskripsi' => 'nullable|string',
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:2048',
         ]);
 
         $arsip = new Arsip();
-        $arsip->user_id = Auth::guard('admin')->id();
+        $arsip->id = (string) Str::uuid(); // id UUID
+        $arsip->user_id = Auth::id(); // ambil id admin yang login
         $arsip->nama_dokumen = $request->nama_dokumen;
         $arsip->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('file')) {
-            $nama_file = time() . '_' . $request->file('file')->getClientOriginalName();
-            $request->file('file')->storeAs('public/arsip', $nama_file);
-            $arsip->file = $nama_file;
+            $file = $request->file('file');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+
+            // ✅ simpan ke disk 'public'
+            $file->storeAs('arsip', $fileName, 'public');
+
+            $arsip->file = $fileName; // jangan pakai $validated
         }
 
         $arsip->save();
 
-        return redirect()->route('admin.arsip.index')->with('success', 'Arsip berhasil diunggah.');
+        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil diunggah.');
     }
 
     public function show($id)
@@ -99,10 +101,11 @@ class ArsipController extends Controller
             }
 
             $nama_file = time() . '_' . $request->file('file')->getClientOriginalName();
-            $request->file('file')->storeAs('public/arsip', $nama_file);
+
+            // ✅ Simpan dengan disk 'public' dan folder 'arsip' (tanpa 'public/' di depan)
+            $request->file('file')->storeAs('arsip', $nama_file, 'public');
             $arsip->file = $nama_file;
         }
-
         $arsip->save();
 
         return redirect()->route('admin.arsip.index')->with('success', 'Arsip berhasil diperbarui.');
