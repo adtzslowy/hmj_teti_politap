@@ -12,7 +12,7 @@ class PengaduanController extends Controller
 {
     public function index()
     {
-        $mahasiswa = Auth()->guard('mahasiswa')->user();
+        $mahasiswa = Auth::guard('mahasiswa')->user();
 
         $pengaduan = $mahasiswa->aduanMahasiswa()
                     ->latest()
