@@ -29,18 +29,19 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">MENU</span>
                 </li>
+                <li class="sidebar-item">
+                    <a href="{{ url('admin/divisi') }}"
+                        class="sidebar-link @if (request()->is('admin/divisi*')) active @endif" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-podium"></i>
+                        </span>
+                        <span class="hide-menu">Divisi</span>
+                    </a>
+                </li>
                 @if (Auth::user()->role === 'GOD')
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/divisi') }}"
-                            class="sidebar-link @if (request()->is('admin/divisi*')) active @endif" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-podium"></i>
-                            </span>
-                            <span class="hide-menu">Divisi</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ url('admin/tambah-admin/') }}" class="sidebar-link @if (request()->is('admin/tambah-admin*')) active @endif" aria-expanded="false">
+                        <a href="{{ url('admin/tambah-admin/') }}"
+                            class="sidebar-link @if (request()->is('admin/tambah-admin*')) active @endif" aria-expanded="false">
                             <span>
                                 <i class="ti ti-crown"></i>
                             </span>
@@ -85,7 +86,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link @if (request()->is('admin/arsip*')) active @endif" href="{{ url('admin/arsip') }}" aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('admin/arsip*')) active @endif"
+                        href="{{ url('admin/arsip') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-brand-google-drive"></i>
                         </span>
@@ -93,7 +95,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link @if (request()->is('admin/pengaduan-mahasiswa*')) active @endif" href="{{ url('admin/pengaduan-mahasiswa') }}" aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('admin/pengaduan-mahasiswa*')) active @endif"
+                        href="{{ url('admin/pengaduan-mahasiswa') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-layers-linked"></i>
                         </span>

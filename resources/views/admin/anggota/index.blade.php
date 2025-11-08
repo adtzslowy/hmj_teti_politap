@@ -20,7 +20,7 @@
         </div>
 
         <div class="card px-3 table table-responsive text-center overflow-auto">
-            <table class="table table-borderless align-middle">
+            <table class="table table-bordered align-middle">
                 <thead class="table-light">
                     <tr>
                         <th>No</th>
@@ -45,7 +45,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button class="btn btn-danger btn-sm" type="submit">
+                                    <button class="btn btn-danger btn-sm delete-btn" type="button">
                                         <i class="fs-3 ti ti-trash"></i>
                                     </button>
                                 </form>

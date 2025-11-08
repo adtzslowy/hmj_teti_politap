@@ -66,4 +66,13 @@ class DivisiController extends Controller
         $divisi->delete();
         return redirect('admin/divisi')->with('success', 'Divisi berhasil di hapus');
     }
+
+    public function toggleStatus($id)
+    {
+        $divisi = Divisi::findOrFail($id);
+        $divisi->is_open = !$divisi->is_open;
+        $divisi->save();
+
+        return redirect()->back()->with('success', 'Status pendaftaran berhasil diperbaharui');
+    }
 }

@@ -13,13 +13,13 @@
                         <input type="text" name="search" class="form-control" placeholder="Cari judul berita!" value="{{ request('search') }}">
                         <button class="btn btn-dark" type="submit">
                             <i class="ti ti-search"></i>
-                        </button>   
+                        </button>
                     </div>
                 </form>
             </div>
 
             <div class="card px-3 py-3 table table-responsive text-center overflow-auto">
-                <table class="table table-borderless align-middle">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>

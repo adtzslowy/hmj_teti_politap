@@ -22,7 +22,7 @@
 
             {{-- Tabel arsip --}}
             <div class="card px-3 py-3 table-responsive text-center">
-                <table class="table table-borderless align-middle">
+                <table class="table table-bordered align-middle">
                     <thead class="table-light">
                         <tr>
                             <th>No</th>
@@ -43,21 +43,21 @@
                                         <i class="fs-3 ti ti-eye"></i>
                                     </a>
 
-                                    @if(Auth::guard('admin')->check() && Auth::guard('admin')->id() == $item->user_id)
+                                    @if(Auth::guard('admin')->check() && Auth::guard('admin')->id() == $item->id_admin)
                                         <a href="{{ url('admin/arsip/edit/' . $item->id) }}" class="btn btn-warning btn-sm text-black">
                                             <i class="fs-3 ti ti-edit"></i>
                                         </a>
-                                        <form action="{{ url('admin/arsip/delete/' . $item->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ url('admin/arsip/delete/' . $item->id) }}" method="POST" class="d-inline delete-form">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Hapus arsip ini?')">
+                                            <button class="btn btn-danger btn-sm delete-btn" type="button">
                                                 <i class="fs-3 ti ti-trash"></i>
                                             </button>
                                         </form>
                                     @endif
                                 </td>
                                 <td class="text-truncate" style="max-width: 200px;">{{ $item->nama_dokumen }}</td>
-                                <td class="text-truncate" style="max-width: 400px;">{{ strip_tags($item->deskripsi) }}</td>
+                                <td class="text-truncate" style="max-width: 400px; white-space: nowrap; overflow: hidden;">{{ strip_tags($item->deskripsi) }}</td>
                                 <td>
                                     @if($item->file)
                                         <a href="{{ asset('storage/arsip/' . $item->file) }}" target="_blank" class="btn btn-outline-primary btn-sm">

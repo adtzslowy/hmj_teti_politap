@@ -2,9 +2,19 @@
     <div class="container-fluid">
         <div class="row mb-3 d-flex justify-content-between">
             <div class="col-12 col-md-12 mb-2">
-                <a href="{{ url('mahasiswa/pendaftaran-anggota/create') }}" class="btn btn-dark">
-                    <i class="ti ti-plus"></i> Daftar Keanggotaan
-                </a>
+                @if (!$sudahDaftar && $pendaftaranDibuka)
+                    <a href="{{ url('mahasiswa/pendaftaran-anggota/create') }}" class="btn btn-dark">
+                        <i class="ti ti-plus"></i> Daftar Keanggotaan
+                    </a>
+                @elseif ($sudahDaftar)
+                    <button class="btn btn-dark" disabled>
+                        <i class="ti ti-lock"></i> Kamu sudah mendaftar
+                    </button>
+                @elseif (!$pendaftaranDibuka)
+                    <button class="btn btn-dark" disabled>
+                        <i class="ti ti-clock"></i> Pendaftaran belum dibuka
+                    </button>
+                @endif
             </div>
 
             <div class="card px-3 py-3 table table-responsive text-center overflow-auto">

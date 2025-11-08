@@ -1,10 +1,10 @@
 <x-admin>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card shadow-sm border-0 rounded-4">
                     <div class="card-header bg-dark text-white">
-                        <h5 class="mb-0"><i class="ti ti-plus"></i> Tambah Arsip Dokumen</h5>
+                        <h5 class="mb-0 text-white"> Tambah Arsip Dokumen</h5>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('admin/arsip') }}" method="POST" enctype="multipart/form-data">

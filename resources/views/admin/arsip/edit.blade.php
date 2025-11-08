@@ -1,13 +1,13 @@
 <x-admin>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card shadow-sm border-0 rounded-4">
-                    <div class="card-header bg-warning text-dark">
-                        <h5 class="mb-0"><i class="ti ti-edit"></i> Edit Arsip Dokumen</h5>
+                    <div class="card-header bg-dark text-dark">
+                        <h5 class="mb-0 text-white">Edit Arsip Dokumen</h5>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/arsip' . $arsip->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('admin/arsip/' . $arsip['id']) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -25,7 +25,7 @@
 
                             <div class="mb-3">
                                 <label for="nama_dokumen" class="form-label fw-bold">Nama Dokumen</label>
-                                <input type="text" name="nama_dokumen" id="nama_dokumen" class="form-control" 
+                                <input type="text" name="nama_dokumen" id="nama_dokumen" class="form-control"
                                     value="{{ old('nama_dokumen', $arsip->nama_dokumen) }}" placeholder="Masukkan nama dokumen">
                                 @error('nama_dokumen')
                                     <small class="text-danger">{{ $message }}</small>
@@ -65,8 +65,8 @@
                                 <a href="{{ url('admin/arsip') }}" class="btn btn-secondary">
                                     <i class="ti ti-arrow-left"></i> Kembali
                                 </a>
-                                <button type="submit" class="btn btn-warning text-dark">
-                                    <i class="ti ti-device-floppy"></i> Perbarui
+                                <button type="submit" class="btn btn-dark text-dark text-white">
+                                    <i class="ti ti-check"></i> Perbarui
                                 </button>
                             </div>
                         </form>

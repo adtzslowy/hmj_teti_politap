@@ -9,47 +9,57 @@ use Illuminate\Support\Str;
 class Arsip extends Model
 {
     protected $table = 'arsip';
-    public $incrementing = false;
 
     protected $fillable = [
-        'user_id',
+        'id_admin',
         'nama_dokumen',
         'deskripsi',
         'file',
     ];
 
-    public $incrementing = false; // karena pakai UUID
-    protected $keyType = 'string'; // pastikan tipe key string
+    public $incrementing = false;
 
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'user_id', 'id');
+        return $this->belongsTo(Admin::class, 'id_admin', 'id');
     }
 
-    public static function uuid()
-    {
-        parent::uuid();
-        static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-        }) ;
-    }
 
     protected static function boot()
     {
         parent::boot();
 
-        // Buat UUID otomatis saat record baru dibuat
         static::creating(function ($model) {
             if (empty($model->id)) {
                 $model->id = (string) Str::uuid();
             }
         });
 
-        // Hapus file otomatis saat arsip dihapus
         static::deleting(function ($arsip) {
             if ($arsip->file && Storage::disk('public')->exists('arsip/' . $arsip->file)) {
                 Storage::disk('public')->delete('arsip/' . $arsip->file);
             }
         });
+    }
+
+    public function uploadFile($request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('arsip', $fileName, 'public');
+            $this->file = $fileName;
+        }
+    }
+
+    public function replaceFile($request)
+    {
+        if ($request->hasFile('file')) {
+            if ($this->file && Storage::disk('public')->exists('arsip/' . $this->file)) {
+                Storage::disk('public')->delete('arsip/' . $this->file);
+            }
+
+            $this->uploadFile($request);
+        }
     }
 }

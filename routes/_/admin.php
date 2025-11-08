@@ -25,6 +25,7 @@ Route::prefix('divisi')->middleware(['auth', 'role:GOD'])->group(function() {
     Route::get('/edit/{id}', [DivisiController::class,'edit']);
     Route::put('/{id}', [DivisiController::class, 'update']);
     Route::delete('/delete/{id}', [DivisiController::class,'destroy']);
+    Route::post('/{id}/toggle', [DivisiController::class, 'toggleStatus'])->name('divisi.toggle');
 });
 
 Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function () {
@@ -48,7 +49,7 @@ Route::prefix('arsip')->group(function () {
 
 
 Route::prefix('pengaduan-mahasiswa')->group(function() {
-    Route::get('/', [PengaduanController::class, 'index']);
+    Route::get('/', [PengaduanController::class, 'index'])->name('pengaduan.index');
     Route::get('/detail/{id}', [PengaduanController::class,'show']);
     Route::put('/{id}', [PengaduanController::class, 'update']);
 });

@@ -41,20 +41,11 @@ class ArsipController extends Controller
         ]);
 
         $arsip = new Arsip();
-        $arsip->id = (string) Str::uuid(); // id UUID
-        $arsip->user_id = Auth::id(); // ambil id admin yang login
+        $arsip->id_admin = Auth::guard('admin')->id();
         $arsip->nama_dokumen = $request->nama_dokumen;
         $arsip->deskripsi = $request->deskripsi;
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-
-            // ✅ simpan ke disk 'public'
-            $file->storeAs('arsip', $fileName, 'public');
-
-            $arsip->file = $fileName; // jangan pakai $validated
-        }
+        $arsip->uploadFile($request);
 
         $arsip->save();
 
@@ -71,7 +62,7 @@ class ArsipController extends Controller
     {
         $arsip = Arsip::findOrFail($id);
 
-        if (!Auth::guard('admin')->check() || $arsip->user_id != Auth::guard('admin')->id()) {
+        if (!Auth::guard('admin')->check() || $arsip->id_admin != Auth::guard('admin')->id()) {
             abort(403, 'Anda tidak memiliki izin untuk mengedit arsip ini.');
         }
 
@@ -82,7 +73,7 @@ class ArsipController extends Controller
     {
         $arsip = Arsip::findOrFail($id);
 
-        if (!Auth::guard('admin')->check() || $arsip->user_id != Auth::guard('admin')->id()) {
+        if (!Auth::guard('admin')->check() || $arsip->id_admin != Auth::guard('admin')->id()) {
             abort(403, 'Anda tidak memiliki izin untuk mengedit arsip ini.');
         }
 
@@ -94,28 +85,17 @@ class ArsipController extends Controller
 
         $arsip->nama_dokumen = $request->nama_dokumen;
         $arsip->deskripsi = $request->deskripsi;
-
-        if ($request->hasFile('file')) {
-            if ($arsip->file && Storage::disk('public')->exists('arsip/' . $arsip->file)) {
-                Storage::disk('public')->delete('arsip/' . $arsip->file);
-            }
-
-            $nama_file = time() . '_' . $request->file('file')->getClientOriginalName();
-
-            // ✅ Simpan dengan disk 'public' dan folder 'arsip' (tanpa 'public/' di depan)
-            $request->file('file')->storeAs('arsip', $nama_file, 'public');
-            $arsip->file = $nama_file;
-        }
+        $arsip->replaceFile($request);
         $arsip->save();
 
-        return redirect()->route('admin.arsip.index')->with('success', 'Arsip berhasil diperbarui.');
+        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil diperbarui.');
     }
 
     public function destroy($id)
     {
         $arsip = Arsip::findOrFail($id);
 
-        if (!Auth::guard('admin')->check() || $arsip->user_id != Auth::guard('admin')->id()) {
+        if (!Auth::guard('admin')->check() || $arsip->id_admin != Auth::guard('admin')->id()) {
             abort(403, 'Anda tidak memiliki izin untuk menghapus arsip ini.');
         }
 
@@ -125,6 +105,6 @@ class ArsipController extends Controller
 
         $arsip->delete();
 
-        return redirect()->route('admin.arsip.index')->with('success', 'Arsip berhasil dihapus.');
+        return redirect()->route('arsip.index')->with('success', 'Arsip berhasil dihapus.');
     }
 }

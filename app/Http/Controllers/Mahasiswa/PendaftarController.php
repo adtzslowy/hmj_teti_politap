@@ -17,12 +17,27 @@ class PendaftarController extends Controller
                 ->with(['divisiDipilih', 'divisiDitempatkan'])
                 ->latest()
                 ->get();
-        return view('mahasiswa.pendaftaran.index', compact('pendaftaran'));
+        $sudahDaftar = $mahasiswa->pendaftaranAnggota()->exists();
+        $pendaftaranDibuka = Divisi::where('is_open', true)->exists();
+        return view('mahasiswa.pendaftaran.index', compact('pendaftaran', 'sudahDaftar', 'pendaftaranDibuka'));
     }
 
     public function create()
     {
-        $divisi = Divisi::all();
+        $mahasiswa = Auth::guard('mahasiswa')->user();
+        $sudahDaftar = $mahasiswa->pendaftaranAnggota()->exists();
+        $divisi = Divisi::where('is_open', true)->get();
+
+        if ($divisi->isEmpty()) {
+            return redirect('mahasiswa/pendaftaran-anggota')
+                ->with('error', 'Pendaftaran belum dibuka oleh Admin');
+        }
+
+        if ($sudahDaftar) {
+            return redirect('mahasiswa/pendaftaran-anggota')
+                ->with('error', 'Anda sudah daftar sebelumnya');
+        }
+
         return view('mahasiswa.pendaftaran.create', compact('divisi'));
     }
 
@@ -34,6 +49,11 @@ class PendaftarController extends Controller
         ]);
 
         $mahasiswa = Auth::guard('mahasiswa')->user();
+
+        if ($mahasiswa->pendaftaranAnggota()->exists()) {
+            return redirect('mahasiswa/pendaftaran-anggota')
+                ->with('error', 'Kamu sudah pernah mendaftar. Pendaftaran hanya bisa dilakukan sekali.');
+        }
 
         $mahasiswa->pendaftaranAnggota()->create([
             'divisi_dipilih_id' => $request->divisi_dipilih_id,

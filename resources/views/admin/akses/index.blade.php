@@ -19,7 +19,7 @@
             </div>
 
             <div class="card px-3 py-3 table table-responsive overflow-auto">
-                <table class="table table-borderless align-middle text-center">
+                <table class="table table-bordered align-middle text-center">
                     <thead class="table-light ">
                         <tr>
                             <th>No</th>
@@ -37,11 +37,11 @@
                                     <a href="{{ url('admin/tambah-admin/edit/' . $item['id']) }}" class="btn btn-sm btn-warning">
                                         <i class="fs-3 ti ti-edit"></i>
                                     </a>
-                                    <form action="{{ url('admin/tambah-admin/delete/'. $item['id']) }}" class="d-inline" method="POST">
+                                    <form action="{{ url('admin/tambah-admin/delete/'. $item['id']) }}" class="d-inline delete-form" method="POST">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button class="btn btn-sm btn-danger" type="submit">
+                                        <button class="btn btn-sm btn-danger delete-btn" type="button">
                                             <i class="fs-3 ti ti-trash"></i>
                                         </button>
                                     </form>
