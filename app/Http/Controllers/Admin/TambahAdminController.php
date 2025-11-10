@@ -31,7 +31,7 @@ class TambahAdminController extends Controller
             'email' => 'required|string',
             'nim' => 'required|string',
             'password' => 'required|string|min:8',
-            'role' => 'required|in:GOD,Operator',
+            'role' => 'required|in:God,Operator',
             'foto_profil' => 'nullable|mimes:jpg,jpeg,png,webp,gif'
         ]);
 
@@ -65,7 +65,7 @@ class TambahAdminController extends Controller
             'nim' => 'required|string',
             'password' => 'nullable|string|min:8',
             'email' => 'required|string',
-            'role' => 'required|in:GOD,Operator',
+            'role' => 'required|in:God,Operator',
             'foto_profil' => 'nullable|string|mimes:png,jpg,jpeg,webp,gif'
         ]);
 

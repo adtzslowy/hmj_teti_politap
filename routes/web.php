@@ -6,7 +6,7 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
-Route::prefix('admin')->middleware(['auth:admin', 'role:GOD,Operator'])->group(function () {
+Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     include __DIR__ . "/_/admin.php";
 });
 

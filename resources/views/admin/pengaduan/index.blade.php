@@ -43,8 +43,8 @@
                                             <span class="badge bg-success text-dark">Selesai</span>
                                         @endif
                                     </td>
-                                    <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $item->tanggapan ?? '-' }}</td>
-                                    <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
+                                    <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $item->tanggapan}}</td>
+                                    <td>{{ $item->created_at->format('H:i, d-m-Y ') }}</td>
                                 </tr>
 
                                 <!-- Modal Update Status -->

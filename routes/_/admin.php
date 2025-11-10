@@ -8,16 +8,18 @@ use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PendaftaranAnggotaController;
 use App\Http\Controllers\Admin\PengaduanController;
+use App\Http\Controllers\Admin\TakeOverController;
 use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'index']);
+Route::get('/chart', [DashboardController::class, 'chart']);
 Route::get('profile', [DashboardController::class, 'profil']);
 Route::get('profile/edit/{id}', [DashboardController::class, 'edit']);
 Route::put('profile/{id}', [DashboardController::class, 'update']);
 
-Route::prefix('divisi')->middleware(['auth', 'role:GOD'])->group(function() {
+Route::prefix('divisi')->middleware(['auth', 'role:God'])->group(function() {
     Route::get('/', [DivisiController::class, 'index']);
     Route::get('/create', [DivisiController::class,'create']);
     Route::post('/', [DivisiController::class,'store']);
@@ -28,7 +30,7 @@ Route::prefix('divisi')->middleware(['auth', 'role:GOD'])->group(function() {
     Route::post('/{id}/toggle', [DivisiController::class, 'toggleStatus'])->name('divisi.toggle');
 });
 
-Route::prefix('tambah-admin')->middleware(['auth', 'role:GOD'])->group(function () {
+Route::prefix('tambah-admin')->middleware(['auth', 'role:God'])->group(function () {
     Route::get('/', [TambahAdminController::class, 'index']);
     Route::get('/create', [TambahAdminController::class, 'create']);
     Route::post('/', [TambahAdminController::class, 'store']);
@@ -90,4 +92,15 @@ Route::prefix('pendaftar')->group(function () {
     Route::post('/approved/{id}', [PendaftaranAnggotaController::class,'approved']);
     Route::post('/decline/{id}', [PendaftaranAnggotaController::class,'decline']);
     Route::delete('/delete/{id}', [PendaftaranAnggotaController::class,'destroy']);
+});
+
+Route::prefix('impersonate')->middleware('isGod')->group(function () {
+    Route::get('/', [TakeOverController::class, 'index'])
+            ->name('impersonate.mahasiswa');
+
+    Route::get('/start/{id}', [TakeOverController::class, 'impersonate'])
+            ->name('impersonate.start');
+
+    Route::post('/leave', [TakeOverController::class, 'leave'])
+            ->name('impersonate.leave');
 });

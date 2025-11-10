@@ -38,7 +38,7 @@
                         <span class="hide-menu">Divisi</span>
                     </a>
                 </li>
-                @if (Auth::user()->role === 'GOD')
+                @if (Auth::user()->role === 'God')
                     <li class="sidebar-item">
                         <a href="{{ url('admin/tambah-admin/') }}"
                             class="sidebar-link @if (request()->is('admin/tambah-admin*')) active @endif" aria-expanded="false">
@@ -103,36 +103,17 @@
                         <span class="hide-menu">Aduan Mahasiswa</span>
                     </a>
                 </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">AUTH</span>
+                    <span class="hide-menu">TAKE OVER CONTROL</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ url('admin/impersonate') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-login"></i>
                         </span>
-                        <span class="hide-menu">Login</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-user-plus"></i>
-                        </span>
-                        <span class="hide-menu">Register</span>
-                    </a>
-                </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">EXTRA</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="./icon-tabler.html" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-mood-happy"></i>
-                        </span>
-                        <span class="hide-menu">Icons</span>
+                        <span class="hide-menu">Take Over Mahasiswa</span>
                     </a>
                 </li>
             </ul>

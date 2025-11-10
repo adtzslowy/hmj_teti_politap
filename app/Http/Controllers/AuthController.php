@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\LoginLogs;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,14 @@ class AuthController extends Controller
     public function loginProsesAdmin(Request $request)
     {
         if (auth()->guard('admin')->attempt(['email' => request('email'), 'password' => request('password')])) {
+
+            LoginLogs::create([
+                'user_id' => auth('admin')->id(),
+                'user_type' => 'admin',
+                'ip_address' => request()->ip(),
+                'logged_in_at' => now(),
+            ]);
+
             return redirect('admin')->with('success', 'Berhasil masuk sebagai admin');
         }
 
@@ -30,6 +39,14 @@ class AuthController extends Controller
     public function loginProsesMahasiswa(Request $request)
     {
         if (auth()->guard('mahasiswa')->attempt(['nim' => request('nim'), 'password' => request('password')])) {
+
+            LoginLogs::create([
+                'user_id' => auth('mahasiswa')->id(),
+                'user_type' => 'mahasiswa',
+                'ip_address' => request()->ip(),
+                'logged_in_at' => now(),
+            ]);
+
             return redirect('mahasiswa')->with('success','Berhasil masuk sebagai mahasiswa');
         }
 
