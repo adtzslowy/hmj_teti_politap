@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2025 at 04:55 AM
+-- Generation Time: Nov 10, 2025 at 07:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nim` varchar(255) NOT NULL,
-  `role` enum('Admin','GOD') NOT NULL,
+  `role` enum('Operator','God') NOT NULL,
   `foto_profil` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -44,8 +44,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `nim`, `role`, `foto_profil`, `created_at`, `updated_at`) VALUES
-('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'GOD', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-10-31 02:13:58', '2025-10-30 19:13:58'),
-('30a1fe6c-a2a0-46f9-a7b1-d978ecb14007', 'Deswita Mutia Putri', 'deswita@gmail.com', '$2y$12$Qgx7E3Abky8ELJZwcaa8LOgq7ADTNWUkrjEyrhypP/O8cpgoRb7Wq', '3042023019', 'Admin', 'Profil aja', '2025-10-30 20:50:48', '2025-10-30 20:50:48');
+('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'God', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-10-31 02:13:58', '2025-10-30 19:13:58'),
+('ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'Arfy', 'arfy@gmail.com', '$2y$12$P//7zF34z3JVN4tuHd8H5OFPO52mkvOR6CYPwKo4sK0UArqijNk/K', '3042023001', 'Operator', 'default.jpg', '2025-11-08 23:38:58', '2025-11-08 23:38:58');
 
 -- --------------------------------------------------------
 
@@ -60,6 +60,29 @@ CREATE TABLE `anggota` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `arsip`
+--
+
+CREATE TABLE `arsip` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `id_admin` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nama_dokumen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `arsip`
+--
+
+INSERT INTO `arsip` (`id`, `id_admin`, `nama_dokumen`, `deskripsi`, `file`, `created_at`, `updated_at`) VALUES
+('25e35b95-734d-4086-b1d4-9fa141e2e9c8', '07923881-de2e-4cd5-a5df-da3c364e9863', 'AMBATUKAM', '<p>d</p>', '1762740557_D0pBA6TnBb.pdf', '2025-11-09 19:09:17', '2025-11-09 19:09:17');
 
 -- --------------------------------------------------------
 
@@ -118,6 +141,7 @@ CREATE TABLE `cache_locks` (
 CREATE TABLE `divisi` (
   `id` char(36) NOT NULL,
   `nama_divisi` enum('Ketua','Koordinator','Bendahara','Sekertaris','Pengembangan Sumber Daya Mahasiswa','Akademik','Hubungan Masyarakat','Komunikasi dan Informasi','Komisi Kedisiplinan','Wakil Ketua') NOT NULL,
+  `is_open` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -126,17 +150,17 @@ CREATE TABLE `divisi` (
 -- Dumping data for table `divisi`
 --
 
-INSERT INTO `divisi` (`id`, `nama_divisi`, `created_at`, `updated_at`) VALUES
-('09cf5b78-a807-4f07-9d91-f25ae871fa07', 'Ketua', '2025-10-20 19:42:23', '2025-10-20 19:42:23'),
-('683de7d1-214b-464c-b380-d7fade97fcfc', 'Pengembangan Sumber Daya Mahasiswa', '2025-10-17 19:59:52', '2025-10-17 19:59:52'),
-('98818446-eb7c-4d58-8306-967d22c32f83', 'Wakil Ketua', '2025-10-30 20:46:00', '2025-10-30 20:46:00'),
-('a5ee91bd-f546-4caf-8466-386830975cd8', 'Koordinator', '2025-10-17 19:56:39', '2025-10-17 19:56:39'),
-('ceb11161-b841-4748-9c44-88bab55d4469', 'Komunikasi dan Informasi', '2025-10-20 00:40:32', '2025-10-20 00:40:32'),
-('da0cb042-aa87-46a8-b087-5f2846cc41d6', 'Komisi Kedisiplinan', '2025-10-17 20:01:10', '2025-10-17 20:01:10'),
-('dd780693-e830-46a9-9200-8ee91d99e7a7', 'Bendahara', '2025-10-19 07:40:43', '2025-10-19 07:40:43'),
-('e18eaeb8-2774-4601-a1e5-0cad0d961ec7', 'Akademik', '2025-10-17 20:00:56', '2025-10-17 20:00:56'),
-('f6d7ab08-eb13-461a-a5f4-70574245e7cb', 'Sekertaris', '2025-10-17 19:59:33', '2025-10-17 19:59:33'),
-('f748b42b-660b-4963-95ce-89db2267a877', 'Hubungan Masyarakat', '2025-10-17 20:01:01', '2025-10-17 20:01:01');
+INSERT INTO `divisi` (`id`, `nama_divisi`, `is_open`, `created_at`, `updated_at`) VALUES
+('09cf5b78-a807-4f07-9d91-f25ae871fa07', 'Ketua', 0, '2025-11-09 02:20:00', '2025-11-08 19:20:00'),
+('683de7d1-214b-464c-b380-d7fade97fcfc', 'Pengembangan Sumber Daya Mahasiswa', 0, '2025-11-10 02:08:09', '2025-11-09 19:08:09'),
+('98818446-eb7c-4d58-8306-967d22c32f83', 'Wakil Ketua', 0, '2025-10-30 20:46:00', '2025-10-30 20:46:00'),
+('a5ee91bd-f546-4caf-8466-386830975cd8', 'Koordinator', 0, '2025-11-10 02:08:08', '2025-11-09 19:08:08'),
+('ceb11161-b841-4748-9c44-88bab55d4469', 'Komunikasi dan Informasi', 0, '2025-11-10 02:08:11', '2025-11-09 19:08:11'),
+('da0cb042-aa87-46a8-b087-5f2846cc41d6', 'Komisi Kedisiplinan', 0, '2025-11-10 02:08:14', '2025-11-09 19:08:14'),
+('dd780693-e830-46a9-9200-8ee91d99e7a7', 'Bendahara', 0, '2025-11-10 02:08:13', '2025-11-09 19:08:13'),
+('e18eaeb8-2774-4601-a1e5-0cad0d961ec7', 'Akademik', 0, '2025-11-10 02:08:18', '2025-11-09 19:08:18'),
+('f6d7ab08-eb13-461a-a5f4-70574245e7cb', 'Sekertaris', 0, '2025-11-10 02:08:20', '2025-11-09 19:08:20'),
+('f748b42b-660b-4963-95ce-89db2267a877', 'Hubungan Masyarakat', 0, '2025-11-10 02:08:22', '2025-11-09 19:08:22');
 
 -- --------------------------------------------------------
 
@@ -153,6 +177,26 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `impersonations`
+--
+
+CREATE TABLE `impersonations` (
+  `id` char(36) NOT NULL,
+  `impersonator_guard` varchar(255) DEFAULT NULL,
+  `impersonator_id` char(36) DEFAULT NULL,
+  `target_guard` varchar(255) DEFAULT NULL,
+  `target_id` varchar(255) DEFAULT NULL,
+  `ip` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `started_at` timestamp NULL DEFAULT NULL,
+  `stopped_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -188,6 +232,33 @@ CREATE TABLE `job_batches` (
   `created_at` int(11) NOT NULL,
   `finished_at` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_logs`
+--
+
+CREATE TABLE `login_logs` (
+  `id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `user_type` varchar(255) NOT NULL,
+  `ip_address` varchar(255) NOT NULL,
+  `logged_in_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `login_logs`
+--
+
+INSERT INTO `login_logs` (`id`, `user_id`, `user_type`, `ip_address`, `logged_in_at`) VALUES
+('113c572e-ac12-4ff2-af4f-a58512db8119', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 18:34:58'),
+('1c4de61b-f4ed-4eaf-a303-dd94ed418a85', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 20:31:18'),
+('54ce36e6-b8e0-447a-b224-f7c9166a1aec', 'ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'admin', '127.0.0.1', '2025-11-09 08:47:06'),
+('5db98c93-059e-41c2-b7f9-87cc502fd815', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'mahasiswa', '127.0.0.1', '2025-11-09 19:10:53'),
+('6dcb6931-f91c-4838-bc20-161245a98415', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 08:25:38'),
+('971c9bb8-d793-4cb4-8051-66700055e7cb', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'mahasiswa', '127.0.0.1', '2025-11-09 08:30:17'),
+('e8574b24-40ca-49b8-a61f-33bf60e86ee4', 'ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'admin', '127.0.0.1', '2025-11-09 19:09:39');
 
 -- --------------------------------------------------------
 
@@ -293,7 +364,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1);
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(4, '2025_11_09_034954_impersonation', 2);
 
 -- --------------------------------------------------------
 
@@ -325,6 +397,40 @@ CREATE TABLE `pendaftar` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pendaftar`
+--
+
+INSERT INTO `pendaftar` (`id`, `divisi_dipilih_id`, `divisi_ditempatkan_id`, `mahasiswa_id`, `status_pendaftaran`, `alasan_bergabung`, `alasan_ditolak`, `created_at`, `updated_at`) VALUES
+('2bd7d5c5-2ec4-4e41-aa20-0ba3d8429965', 'ceb11161-b841-4748-9c44-88bab55d4469', 'ceb11161-b841-4748-9c44-88bab55d4469', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'Approved', 'saya pengen menjadikan HMJ ini sebagai wadah tempat aspirasi mahasiswa terutama prodi ti', NULL, '2025-11-09 15:43:06', '2025-11-09 08:43:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengaduan`
+--
+
+CREATE TABLE `pengaduan` (
+  `id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mahasiswa_id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `judul_pengaduan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `deskripsi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('Pending','Diproses','Selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Pending',
+  `tanggapan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bukti_aduan` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pengaduan`
+--
+
+INSERT INTO `pengaduan` (`id`, `mahasiswa_id`, `judul_pengaduan`, `deskripsi`, `status`, `tanggapan`, `bukti_aduan`, `created_at`, `updated_at`) VALUES
+('34532804-2339-4509-a6bb-09a3810252ee', '3aad8f7d-933c-42c7-b1de-e1ed3267687c', 'Pengaduan 1', 'Mengajukan Permohonan untuk melakukan kegiatan ospek ', 'Selesai', 'Laporan kamu telah selesai kami atasi terimakasih sudah menghubungi kami ya', '', '2025-11-03 18:04:35', '2025-11-08 19:45:22'),
+('5c741ed4-7e5b-45cf-9500-6da8345c5467', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'HALO', '<p>HALO</p>', 'Selesai', 'TESTING', '/Applications/XAMPP/xamppfiles/temp/phpTv0UDn', '2025-11-08 19:51:08', '2025-11-08 20:10:12'),
+('5fe33e2a-4a38-44d0-962c-519ee634427e', '3aad8f7d-933c-42c7-b1de-e1ed3267687c', 'Pengaduan 2', 'Melaksanakan pembekalan untuk mahasiswa baru angkatan 2025', 'Selesai', 'stest', '', '2025-11-03 18:03:08', '2025-11-09 08:27:46');
+
 -- --------------------------------------------------------
 
 --
@@ -345,7 +451,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('cfamPfCxlPVt7abLKVE2TJPbpnJA88fbLzH5WVlf', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVG42bkE3UnN1RmlIM0tIT2EzRWk3ME5OcnZnSENFaWZKeWpSamhpSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9nb2QtbW9kZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mzc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9hZG1pbi9tYWhhc2lzd2EiO31zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtzOjM2OiIwNzkyMzg4MS1kZTJlLTRjZDUtYTVkZi1kYTNjMzY0ZTk4NjMiO3M6MjI6IlBIUERFQlVHQkFSX1NUQUNLX0RBVEEiO2E6MDp7fX0=', 1761882648);
+('w5oeI1pQA4UY2kcOZrVCCDvLLDoBBfG9sZik6gVQ', '07923881-de2e-4cd5-a5df-da3c364e9863', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiYWc3OVBWNHJmMk04MTA4Y3VYWHFvSUE4OEJlSHJJYUEzemI4R2I0eCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0NzoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL3BlbmdhZHVhbi1tYWhhc2lzd2EiO31zOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czozOToiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL2ltcGVyc29uYXRlIjtzOjU6InJvdXRlIjtzOjIxOiJpbXBlcnNvbmF0ZS5tYWhhc2lzd2EiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjEyOiJpbXBlcnNvbmF0b3IiO2E6Mjp7czo1OiJndWFyZCI7czo1OiJhZG1pbiI7czoyOiJpZCI7czozNjoiMDc5MjM4ODEtZGUyZS00Y2Q1LWE1ZGYtZGEzYzM2NGU5ODYzIjt9czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7czozNjoiMDc5MjM4ODEtZGUyZS00Y2Q1LWE1ZGYtZGEzYzM2NGU5ODYzIjtzOjIyOiJQSFBERUJVR0JBUl9TVEFDS19EQVRBIjthOjA6e319', 1762745493),
+('YU3qNPVRa6lwMHGZiL34TUoaMJBdEryXf27hfLS9', 'f396e21d-81a2-476b-8332-9fdd047afd8f', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRlNFS01pUVFUSUJlNXpDRlJLc3huRHVWVUZSb0Rjd3lEd1lGN0lxZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9tYWhhc2lzd2EvcGVuZGFmdGFyYW4tYW5nZ290YSI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1NjoibG9naW5fbWFoYXNpc3dhXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6ImYzOTZlMjFkLTgxYTItNDc2Yi04MzMyLTlmZGQwNDdhZmQ4ZiI7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1762747246);
 
 -- --------------------------------------------------------
 
@@ -383,6 +490,13 @@ ALTER TABLE `anggota`
   ADD KEY `divisi_id` (`divisi_id`);
 
 --
+-- Indexes for table `arsip`
+--
+ALTER TABLE `arsip`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_id_admin` (`id_admin`);
+
+--
 -- Indexes for table `berita`
 --
 ALTER TABLE `berita`
@@ -414,6 +528,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `impersonations`
+--
+ALTER TABLE `impersonations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jobs`
 --
 ALTER TABLE `jobs`
@@ -425,6 +545,13 @@ ALTER TABLE `jobs`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `login_logs`
+--
+ALTER TABLE `login_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_admin_id` (`user_id`);
 
 --
 -- Indexes for table `mahasiswa`
@@ -452,6 +579,13 @@ ALTER TABLE `pendaftar`
   ADD KEY `id_mahasiswa` (`mahasiswa_id`),
   ADD KEY `divisi_dipilih_id` (`divisi_dipilih_id`),
   ADD KEY `divisi_ditempatkan_id` (`divisi_ditempatkan_id`);
+
+--
+-- Indexes for table `pengaduan`
+--
+ALTER TABLE `pengaduan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pengaduan_mahasiswa_id_foreign` (`mahasiswa_id`);
 
 --
 -- Indexes for table `sessions`
@@ -488,7 +622,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -502,12 +636,24 @@ ALTER TABLE `anggota`
   ADD CONSTRAINT `mahasiswa_id` FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `arsip`
+--
+ALTER TABLE `arsip`
+  ADD CONSTRAINT `fk_id_admin` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `pendaftar`
 --
 ALTER TABLE `pendaftar`
   ADD CONSTRAINT `divisi_dipilih_id` FOREIGN KEY (`divisi_dipilih_id`) REFERENCES `divisi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `divisi_ditempatkan_id` FOREIGN KEY (`divisi_ditempatkan_id`) REFERENCES `divisi` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `id_mahasiswa` FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pengaduan`
+--
+ALTER TABLE `pengaduan`
+  ADD CONSTRAINT `pengaduan_mahasiswa_id_foreign` FOREIGN KEY (`mahasiswa_id`) REFERENCES `mahasiswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
