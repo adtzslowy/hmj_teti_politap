@@ -13,13 +13,13 @@ use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard_admin');
 Route::get('/chart', [DashboardController::class, 'chart']);
 Route::get('profile', [DashboardController::class, 'profil']);
 Route::get('profile/edit/{id}', [DashboardController::class, 'edit']);
 Route::put('profile/{id}', [DashboardController::class, 'update']);
 
-Route::prefix('divisi')->middleware(['auth', 'role:God'])->group(function() {
+Route::prefix('divisi')->group(function() {
     Route::get('/', [DivisiController::class, 'index']);
     Route::get('/create', [DivisiController::class,'create']);
     Route::post('/', [DivisiController::class,'store']);
@@ -98,7 +98,7 @@ Route::prefix('impersonate')->middleware('isGod')->group(function () {
     Route::get('/', [TakeOverController::class, 'index'])
             ->name('impersonate.mahasiswa');
 
-    Route::get('/start/{id}', [TakeOverController::class, 'impersonate'])
+    Route::post('/{id}', [TakeOverController::class, 'impersonate'])
             ->name('impersonate.start');
 
     Route::post('/leave', [TakeOverController::class, 'leave'])

@@ -43,8 +43,8 @@
                                     <td>{{ $mhs->nim }}</td>
                                     <td>{{ $mhs->prodi ?? '-' }}</td>
                                     <td class="text-center">
-                                        <form action="{{ url('admin/impersonate/start', $mhs->id) }}"
-                                              method="GET">
+                                        <form action="{{ route('impersonate.start', $mhs->id) }}"
+                                              method="POST">
                                             @csrf
                                             <button class="btn btn-warning btn-sm">
                                                 Take Over

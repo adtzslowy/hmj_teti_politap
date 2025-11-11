@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 class Impersonate extends Model
 {
     public $timestamps = false;
+
+    protected $table = 'impersonations';
+
     protected $fillable = [
         'impersonator_guard',
         'impersonator_id',

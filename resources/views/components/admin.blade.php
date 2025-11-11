@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'Himpunan Mahasiswa Jurusan' }}</title>
-    <link rel="icon" type="image/png" href="{{ url('source') }}/assets/images/logos/favicon.png" />
+    <link rel="icon" href="{{ url('source') }}/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ url('source') }}/assets/css/styles.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>

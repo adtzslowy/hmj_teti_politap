@@ -70,7 +70,15 @@
 
     <!-- Tombol Login -->
     <div class="hidden md:block">
-      <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Masuk</a>
+        @if (!Auth::guard('admin')->check() && !Auth::guard('mahasiswa')->check())
+            <a href="{{ route('login_mhs') }}" class="bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Masuk</a>
+        @else
+            @if (Auth::guard('admin')->check())
+                <a href="{{ route('dashboard_admin') }}" class="bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Dashboard</a>
+            @elseif (Auth::guard('mahasiswa')->check())
+                <a href="{{ route('dashboard_mahasiswa') }}" class="bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-red-500 hover:text-white transition fade-up inline-block">Dashboard</a>
+            @endif
+        @endif
     </div>
 
     <!-- Tombol Mobile -->

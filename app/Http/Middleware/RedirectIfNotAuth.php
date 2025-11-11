@@ -16,7 +16,7 @@ class RedirectIfNotAuth
     public function handle(Request $request, Closure $next): Response
     {
         if (!any_guard_authenticated(['admin', 'mahasiswa'])) {
-            return redirect('/login')->with('error', "You've must be logged in to access this page.");
+            return redirect('/')->with('error', "You've must be logged in to access this page.");
         }
 
         return $next($request);

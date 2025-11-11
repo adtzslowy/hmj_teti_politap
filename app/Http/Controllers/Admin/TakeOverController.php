@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Session;
 
 class TakeOverController extends Controller
 {
-    // Halaman daftar mahasiswa untuk take over
     public function index()
     {
         $admin = Auth::guard('admin')->user();
+
         if (! $admin || $admin->role !== 'God') {
             abort(403, 'Akses ditolak');
         }
@@ -27,7 +27,8 @@ class TakeOverController extends Controller
     public function impersonate(Request $request, string $id)
     {
         $admin = Auth::guard('admin')->user();
-        if (! $admin ||  $admin->role !== 'God') {
+
+        if (! $admin || $admin->role !== 'God') {
             abort(403, 'Akses ditolak');
         }
 
@@ -37,29 +38,28 @@ class TakeOverController extends Controller
 
         $target = Mahasiswa::findOrFail($id);
 
-
         Session::put('impersonator', [
             'guard' => 'admin',
-            'id' => $admin->id,
+            'id'    => $admin->id,
         ]);
-
 
         $imp = Impersonate::create([
             'impersonator_guard' => 'admin',
-            'impersonator_id' => $admin->id,
-            'target_guard' => 'mahasiswa',
-            'target_id' => $target->id,
-            'ip' => $request->ip(),
-            'user_agent' => $request->header('User-Agent'),
-            'started_at' => now(),
+            'impersonator_id'    => $admin->id,
+            'target_guard'       => 'mahasiswa',
+            'target_id'          => $target->id,
+            'ip'                 => $request->ip(),
+            'user_agent'         => $request->header('User-Agent'),
+            'started_at'         => now(),
         ]);
 
         Session::put('impersonation_log_id', $imp->id);
 
         Auth::guard('mahasiswa')->loginUsingId($target->id);
+        Auth::shouldUse('mahasiswa');
         $request->session()->regenerate();
 
-        return redirect('/mahasiswa')->with('warning', "Kamu sedang mengakses Akun: {$target->nama_mahasiswa}");
+        return redirect('/mahasiswa')->with('warning', "Kamu sedang mengakses akun: {$target->nama_mahasiswa}");
     }
 
     public function leave(Request $request)
@@ -73,16 +73,18 @@ class TakeOverController extends Controller
             $imp->update(['stopped_at' => now()]);
         }
 
-        $adminId = Session::get('impersonator.id');
+
+        $adminId    = Session::get('impersonator.id');
         $adminGuard = Session::get('impersonator.guard');
 
         Auth::guard('mahasiswa')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        Auth::guard($adminGuard)->loginUsingId($adminId);
 
         Session::forget(['impersonator', 'impersonation_log_id']);
+
+        Auth::guard($adminGuard)->loginUsingId($adminId);
+        Auth::shouldUse($adminGuard);
+
+        $request->session()->regenerate();
 
         return redirect('/admin')->with('success', 'Kamu kembali ke akun admin');
     }

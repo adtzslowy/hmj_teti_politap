@@ -5,7 +5,7 @@ use App\Http\Controllers\Mahasiswa\DashboardController;
 use App\Http\Controllers\Mahasiswa\PendaftarController;
 use App\Http\Controllers\Mahasiswa\PengaduanController;
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard_mahasiswa');
 Route::get('/profile', [DashboardController::class, 'profil']);
 Route::get('/profile/edit/{id}', [DashboardController::class, 'edit']);
 Route::put('/profile/{id}', [DashboardController::class, 'update']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\LoginLogs;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('mahasiswa.dashboard');
+        $user = Auth::user();
+
+        $statusLogin = LoginLogs::where('user_id', $user->id)
+                        ->where('user_type', 'mahasiswa')
+                        ->latest('logged_in_at')
+                        ->first();
+        return view('mahasiswa.dashboard', compact('statusLogin'));
     }
 
     public function profil()

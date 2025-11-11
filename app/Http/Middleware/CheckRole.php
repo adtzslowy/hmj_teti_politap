@@ -23,6 +23,10 @@ class CheckRole
 
         $user->refresh();
 
+        if ($user->role === ['God','Operator']) {
+            return $next($request);
+        }
+
         if (! in_array($user->role, $roles)) {
             abort(403, 'Kamu tidak memiliki akses ke halaman ini');
         }

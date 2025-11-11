@@ -8,7 +8,7 @@
                             <h5 class="card-title fw-semibold">Login Mahasiswa 7 Hari Terakhir</h5>
                         </div>
                         <div>
-                            <select id="filterRange" class="form-select">
+                            <select id="filterRange" class="form-control" disabled>
                                 <option value="7">7 Hari Terakhir</option>
                                 <option value="30">1 Bulan Terakhir</option>
                                 <option value="365">1 Tahun Terakhir</option>
@@ -57,7 +57,7 @@
                                     <div class="d-flex align-items-center pb-1">
                                         <span
                                             class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-arrow-right text-warning"></i>
+                                            <i class="ti ti-arrow-right text-dark"></i>
                                         </span>
                                         <p class="fs-3 mb-0">Total Aduan Mahasiswa</p>
                                     </div>
@@ -96,7 +96,7 @@
                                 </div>
 
                                 <div class="timeline-desc fs-3 text-dark mt-n1">
-                                    {{ $activity->user_type }} melakukan login
+                                    {{ $activity->user_type }} login
                                     <div class="fw-semibold">
                                         {{ $activity->ip_address ?? 'Unknown IP' }}
                                     </div>
@@ -163,7 +163,7 @@
                         @elseif($aduan->status == 'Diproses') bg-info
                         @elseif($aduan->status == 'Selesai') bg-success
                         @else bg-secondary @endif
-                        rounded-3 fw-semibold">
+                        rounded fw-semibold">
                                                     {{ ucfirst($aduan->status) }}
                                                 </span>
                                             </div>
