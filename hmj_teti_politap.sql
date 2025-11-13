@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2025 at 07:11 AM
+-- Generation Time: Nov 12, 2025 at 09:47 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nim` varchar(255) NOT NULL,
-  `role` enum('Operator','God') NOT NULL,
+  `role` enum('Operator','God') NOT NULL DEFAULT 'Operator',
   `foto_profil` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -44,8 +44,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `email`, `password`, `nim`, `role`, `foto_profil`, `created_at`, `updated_at`) VALUES
-('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'God', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-10-31 02:13:58', '2025-10-30 19:13:58'),
-('ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'Arfy', 'arfy@gmail.com', '$2y$12$P//7zF34z3JVN4tuHd8H5OFPO52mkvOR6CYPwKo4sK0UArqijNk/K', '3042023001', 'Operator', 'default.jpg', '2025-11-08 23:38:58', '2025-11-08 23:38:58');
+('07923881-de2e-4cd5-a5df-da3c364e9863', 'ADITYA PRASETYO', 'prasetyoaditya257@gmail.com', '$2y$12$1fRcD7XQqZwVkvmoJoc6Ne9TvLhUueP0nR2Iy2ppM6.rQiSbmvFka', '3042023032', 'God', 'profile_admin/FKaAENghc1KHYPZHMbezA8uiYTS1dmf0kWdi6B4E.jpg', '2025-11-11 07:38:11', '2025-11-11 00:38:11');
 
 -- --------------------------------------------------------
 
@@ -77,13 +76,6 @@ CREATE TABLE `arsip` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `arsip`
---
-
-INSERT INTO `arsip` (`id`, `id_admin`, `nama_dokumen`, `deskripsi`, `file`, `created_at`, `updated_at`) VALUES
-('25e35b95-734d-4086-b1d4-9fa141e2e9c8', '07923881-de2e-4cd5-a5df-da3c364e9863', 'AMBATUKAM', '<p>d</p>', '1762740557_D0pBA6TnBb.pdf', '2025-11-09 19:09:17', '2025-11-09 19:09:17');
-
 -- --------------------------------------------------------
 
 --
@@ -99,14 +91,6 @@ CREATE TABLE `berita` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `berita`
---
-
-INSERT INTO `berita` (`id`, `judul`, `deskripsi`, `dokumentasi`, `tanggal_post`, `created_at`, `updated_at`) VALUES
-('7a0794f6-7515-444d-8f4d-3a664eb69178', 'Pengusaha Ngadu Ke Purbaya Pemeriksaan Barang di Bea Cukai Sampai 34 Hari', '<p>Pelapor merasa proses pemeriksaan fisik barang tidak wajar karena memakan waktu hingga 34 hari. Ia juga mengaku didenda terus menerus dengan alasan yang tidak masuk akal, misalnya terkait tudingan bahwa dirinya menurunkan nilai barang pada invoice atau under invoicing. Oknum Bea Cukai juga meminta bukti yang tidak masuk akal sehingga sulit dipenuhi.<br />\r\n<br />\r\n&quot;Saya dikenakan notul yang berisi denda. Padahal saya tidak under invoicing dan telah melakukan impor barang serupa bertahun-tahun. Ketika diminta alasan, alasannya tidak masuk akal, misal meminta bukti negosiasi, padahal bukti-bukti itu sudah disediakan dengan lengkap. Ini terjadi hampir untuk semua kegiatan impor saya, kena denda terus,&quot; ujar Purbaya membacakan keluhan tersebut.</p>', 'dokumentasi_berita/hckHUcxcwS0vg5LsEVEtKGNld83hQCbcCCluMavb.jpg', '2025-10-18', '2025-10-17 18:58:36', '2025-10-17 18:58:36'),
-('d3c01d09-7855-47d3-b2c7-9a17ebde282d', 'Bahlil Respon BBM Shell-BP Kosong: Kuota Impor 110%. Semuanya Kita Kasih!', '<p>Jakarta - Badan usaha swasta seperti Shell, Exxon, hingga BP AKR mendatangi kantor Kementerian Investasi dan Hilirisasi/BKPM pada Selasa (7/10) lalu. Kedatangan mereka membahas kepastian investasi di tengah kelangkaan BBM di SPBU swasta.<br />\r\nMenteri Energi dan Sumber Daya Mineral (ESDM) Bahlil Lahadalia lantas merespons hal itu sekaligus membantah menghalang-halangi investasi SPBU swasta di Tanah Air. Menurutnya, pemerintah telah menambah kuota impor menjadi 110% untuk tahun 2025 dibandingkan tahun 2024.<br />\r\n<br />\r\n&quot;110% itu kan harusnya udah paten kali itu kan. Jadi apanya investasinya yang kita halangi?&quot; ujar Bahlil saat ditemui di Jakarta Convention Center, Jakarta, Jumat (10/10/2025).</p>', 'dokumentasi_berita/2N1SMAROpAb1m2E5OwSxOYkrfjoCtssSqJvNBEQe.jpg', '2025-10-01', '2025-10-18 00:58:04', '2025-10-17 17:58:04');
 
 -- --------------------------------------------------------
 
@@ -151,16 +135,15 @@ CREATE TABLE `divisi` (
 --
 
 INSERT INTO `divisi` (`id`, `nama_divisi`, `is_open`, `created_at`, `updated_at`) VALUES
-('09cf5b78-a807-4f07-9d91-f25ae871fa07', 'Ketua', 0, '2025-11-09 02:20:00', '2025-11-08 19:20:00'),
-('683de7d1-214b-464c-b380-d7fade97fcfc', 'Pengembangan Sumber Daya Mahasiswa', 0, '2025-11-10 02:08:09', '2025-11-09 19:08:09'),
-('98818446-eb7c-4d58-8306-967d22c32f83', 'Wakil Ketua', 0, '2025-10-30 20:46:00', '2025-10-30 20:46:00'),
+('09cf5b78-a807-4f07-9d91-f25ae871fa07', 'Ketua', 0, '2025-11-11 07:37:55', '2025-11-11 00:37:55'),
+('683de7d1-214b-464c-b380-d7fade97fcfc', 'Pengembangan Sumber Daya Mahasiswa', 0, '2025-11-11 07:37:55', '2025-11-11 00:37:55'),
+('98818446-eb7c-4d58-8306-967d22c32f83', 'Wakil Ketua', 0, '2025-11-11 07:37:56', '2025-11-11 00:37:56'),
 ('a5ee91bd-f546-4caf-8466-386830975cd8', 'Koordinator', 0, '2025-11-10 02:08:08', '2025-11-09 19:08:08'),
 ('ceb11161-b841-4748-9c44-88bab55d4469', 'Komunikasi dan Informasi', 0, '2025-11-10 02:08:11', '2025-11-09 19:08:11'),
 ('da0cb042-aa87-46a8-b087-5f2846cc41d6', 'Komisi Kedisiplinan', 0, '2025-11-10 02:08:14', '2025-11-09 19:08:14'),
 ('dd780693-e830-46a9-9200-8ee91d99e7a7', 'Bendahara', 0, '2025-11-10 02:08:13', '2025-11-09 19:08:13'),
 ('e18eaeb8-2774-4601-a1e5-0cad0d961ec7', 'Akademik', 0, '2025-11-10 02:08:18', '2025-11-09 19:08:18'),
-('f6d7ab08-eb13-461a-a5f4-70574245e7cb', 'Sekertaris', 0, '2025-11-10 02:08:20', '2025-11-09 19:08:20'),
-('f748b42b-660b-4963-95ce-89db2267a877', 'Hubungan Masyarakat', 0, '2025-11-10 02:08:22', '2025-11-09 19:08:22');
+('f6d7ab08-eb13-461a-a5f4-70574245e7cb', 'Bendahara', 0, '2025-11-11 07:30:34', '2025-11-11 00:30:34');
 
 -- --------------------------------------------------------
 
@@ -246,19 +229,6 @@ CREATE TABLE `login_logs` (
   `ip_address` varchar(255) NOT NULL,
   `logged_in_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `login_logs`
---
-
-INSERT INTO `login_logs` (`id`, `user_id`, `user_type`, `ip_address`, `logged_in_at`) VALUES
-('113c572e-ac12-4ff2-af4f-a58512db8119', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 18:34:58'),
-('1c4de61b-f4ed-4eaf-a303-dd94ed418a85', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 20:31:18'),
-('54ce36e6-b8e0-447a-b224-f7c9166a1aec', 'ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'admin', '127.0.0.1', '2025-11-09 08:47:06'),
-('5db98c93-059e-41c2-b7f9-87cc502fd815', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'mahasiswa', '127.0.0.1', '2025-11-09 19:10:53'),
-('6dcb6931-f91c-4838-bc20-161245a98415', '07923881-de2e-4cd5-a5df-da3c364e9863', 'admin', '127.0.0.1', '2025-11-09 08:25:38'),
-('971c9bb8-d793-4cb4-8051-66700055e7cb', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'mahasiswa', '127.0.0.1', '2025-11-09 08:30:17'),
-('e8574b24-40ca-49b8-a61f-33bf60e86ee4', 'ac4afc1a-56ef-4ce1-b425-76bab8fa64aa', 'admin', '127.0.0.1', '2025-11-09 19:09:39');
 
 -- --------------------------------------------------------
 
@@ -397,13 +367,6 @@ CREATE TABLE `pendaftar` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pendaftar`
---
-
-INSERT INTO `pendaftar` (`id`, `divisi_dipilih_id`, `divisi_ditempatkan_id`, `mahasiswa_id`, `status_pendaftaran`, `alasan_bergabung`, `alasan_ditolak`, `created_at`, `updated_at`) VALUES
-('2bd7d5c5-2ec4-4e41-aa20-0ba3d8429965', 'ceb11161-b841-4748-9c44-88bab55d4469', 'ceb11161-b841-4748-9c44-88bab55d4469', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'Approved', 'saya pengen menjadikan HMJ ini sebagai wadah tempat aspirasi mahasiswa terutama prodi ti', NULL, '2025-11-09 15:43:06', '2025-11-09 08:43:06');
-
 -- --------------------------------------------------------
 
 --
@@ -421,15 +384,6 @@ CREATE TABLE `pengaduan` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `pengaduan`
---
-
-INSERT INTO `pengaduan` (`id`, `mahasiswa_id`, `judul_pengaduan`, `deskripsi`, `status`, `tanggapan`, `bukti_aduan`, `created_at`, `updated_at`) VALUES
-('34532804-2339-4509-a6bb-09a3810252ee', '3aad8f7d-933c-42c7-b1de-e1ed3267687c', 'Pengaduan 1', 'Mengajukan Permohonan untuk melakukan kegiatan ospek ', 'Selesai', 'Laporan kamu telah selesai kami atasi terimakasih sudah menghubungi kami ya', '', '2025-11-03 18:04:35', '2025-11-08 19:45:22'),
-('5c741ed4-7e5b-45cf-9500-6da8345c5467', 'f396e21d-81a2-476b-8332-9fdd047afd8f', 'HALO', '<p>HALO</p>', 'Selesai', 'TESTING', '/Applications/XAMPP/xamppfiles/temp/phpTv0UDn', '2025-11-08 19:51:08', '2025-11-08 20:10:12'),
-('5fe33e2a-4a38-44d0-962c-519ee634427e', '3aad8f7d-933c-42c7-b1de-e1ed3267687c', 'Pengaduan 2', 'Melaksanakan pembekalan untuk mahasiswa baru angkatan 2025', 'Selesai', 'stest', '', '2025-11-03 18:03:08', '2025-11-09 08:27:46');
 
 -- --------------------------------------------------------
 
@@ -451,8 +405,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('w5oeI1pQA4UY2kcOZrVCCDvLLDoBBfG9sZik6gVQ', '07923881-de2e-4cd5-a5df-da3c364e9863', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiYWc3OVBWNHJmMk04MTA4Y3VYWHFvSUE4OEJlSHJJYUEzemI4R2I0eCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0NzoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL3BlbmdhZHVhbi1tYWhhc2lzd2EiO31zOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czozOToiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2FkbWluL2ltcGVyc29uYXRlIjtzOjU6InJvdXRlIjtzOjIxOiJpbXBlcnNvbmF0ZS5tYWhhc2lzd2EiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjEyOiJpbXBlcnNvbmF0b3IiO2E6Mjp7czo1OiJndWFyZCI7czo1OiJhZG1pbiI7czoyOiJpZCI7czozNjoiMDc5MjM4ODEtZGUyZS00Y2Q1LWE1ZGYtZGEzYzM2NGU5ODYzIjt9czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7czozNjoiMDc5MjM4ODEtZGUyZS00Y2Q1LWE1ZGYtZGEzYzM2NGU5ODYzIjtzOjIyOiJQSFBERUJVR0JBUl9TVEFDS19EQVRBIjthOjA6e319', 1762745493),
-('YU3qNPVRa6lwMHGZiL34TUoaMJBdEryXf27hfLS9', 'f396e21d-81a2-476b-8332-9fdd047afd8f', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRlNFS01pUVFUSUJlNXpDRlJLc3huRHVWVUZSb0Rjd3lEd1lGN0lxZCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9tYWhhc2lzd2EvcGVuZGFmdGFyYW4tYW5nZ290YSI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1NjoibG9naW5fbWFoYXNpc3dhXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6ImYzOTZlMjFkLTgxYTItNDc2Yi04MzMyLTlmZGQwNDdhZmQ4ZiI7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1762747246);
+('Fj1lyXkTmdNBDXSw6iZxIoTAdz4BOhiyfg2WPThV', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiemFXOVJXbXR3dHl6MXYxWk9oOTNOUEVFd09jYnJNdmdCVVVPQmxITSI7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly9sb2NhbGhvc3QvaG1qX3RldGlfcG9saXRhcC9wdWJsaWMiO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1762937109),
+('Vy7aPnf7YMS6sbC0vFchAAnSUhy76zdk8IQf3PdM', '07923881-de2e-4cd5-a5df-da3c364e9863', '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoibWpkMEZ4aHlDZUdqWXVwOWFkS29OWDdCNHZiNzVNeEczZVI1U0lZNCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo5NDoiaHR0cDovL2xvY2FsaG9zdC9obWpfdGV0aV9wb2xpdGFwL3B1YmxpYy9hZG1pbi9hcnNpcC9zaG93L2Q4NGMxOWJiLWQ2YTAtNDg5MS1iZmZhLTU2NmYwZDI1MDc4NSI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjYzOiJodHRwOi8vbG9jYWxob3N0L2htal90ZXRpX3BvbGl0YXAvcHVibGljL2FkbWluL21haGFzaXN3YT9wYWdlPTYiO3M6NToicm91dGUiO047fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTI6ImxvZ2luX2FkbWluXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO3M6MzY6IjA3OTIzODgxLWRlMmUtNGNkNS1hNWRmLWRhM2MzNjRlOTg2MyI7czoyMjoiUEhQREVCVUdCQVJfU1RBQ0tfREFUQSI7YTowOnt9fQ==', 1762899648);
 
 -- --------------------------------------------------------
 

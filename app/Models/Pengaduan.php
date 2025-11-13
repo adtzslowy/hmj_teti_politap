@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Pengaduan extends Model
 {
@@ -35,5 +36,12 @@ class Pengaduan extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+
+    public function deleteFile()
+    {
+        if ($this->bukti_aduan && Storage::disk('public')->exists($this->bukti_aduan)) {
+            Storage::disk('public')->delete($this->bukti_aduan);
+        }
     }
 }

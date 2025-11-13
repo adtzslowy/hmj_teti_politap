@@ -37,4 +37,13 @@ class PengaduanController extends Controller
         return redirect()->back()->with('success', 'Status pengaduan berhasil diperbaharui.');
     }
 
+    public function destroy(Request $request, string $id)
+    {
+        $pengaduan = Pengaduan::findOrFail($id);
+        $pengaduan->deleteFile($request);
+        $pengaduan->delete();
+
+        return redirect()->back()->with('success', 'Pengaduan berhasil dihapus oleh GOD MODE');
+    }
+
 }

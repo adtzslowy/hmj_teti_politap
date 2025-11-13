@@ -40,11 +40,11 @@
                                     <a href="{{ url('admin/berita/edit/' . $item->id) }}" class="btn btn-warning btn-sm text-black">
                                         <i class="fs-3 ti ti-edit"></i>
                                     </a>
-                                    <form action="{{ url('admin/berita/delete/' . $item->id) }}" class="d-inline" method="POST">
+                                    <form action="{{ url('admin/berita/delete/' . $item->id) }}" class="d-inline delete-form" method="POST">
                                         @csrf
                                         @method("DELETE")
 
-                                        <button class="btn btn-danger btn-sm" type="submit">
+                                        <button class="btn btn-danger btn-sm delete-btn" type="button">
                                             <i class="fs-3 ti ti-trash"></i>
                                         </button>
                                     </form>

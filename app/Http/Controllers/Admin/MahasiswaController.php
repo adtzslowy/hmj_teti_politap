@@ -48,11 +48,13 @@ class MahasiswaController extends Controller
         $data = $request->except(['_token', 'foto_profil']);
 
         $mahasiswa = new Mahasiswa();
-
         $path = $mahasiswa->profilePath($request);
         if ($path) {
-            $data['foto_profil'] = $path;
+            $mahasiswa['foto_profil'] = $path;
+        } else {
+            $data['foto_profil'] = 'default.jpg';
         }
+
 
         $data['password'] = bcrypt($request->nim);
 

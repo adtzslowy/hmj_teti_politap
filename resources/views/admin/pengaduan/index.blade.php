@@ -31,6 +31,16 @@
                                         <a href="{{ url('admin/pengaduan-mahasiswa/detail/' . $item->id) }}" class="btn btn-info btn-sm">
                                             <i class="fs-3 ti ti-eye "></i>
                                         </a>
+                                        @if (Auth::user()->role === 'God')
+                                            <form action="{{ url('admin/pengaduan-mahasiswa/delete' . $item['id']) }}" method="POST" class="d-inline delete-form">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button class="btn btn-sm btn-danger delete-btn" type="button">
+                                                    <i class="ti ti-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                     <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $item->judul_pengaduan }}</td>
                                     <td class="text-justify text-truncate" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ strip_tags($item->deskripsi) }}</td>

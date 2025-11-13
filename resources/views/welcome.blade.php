@@ -141,16 +141,16 @@
   <section id="stats" class="py-16 bg-white">
     <div class="container mx-auto grid md:grid-cols-3 gap-8 text-center">
       <div class="fade-up">
-        <h3 class="text-5xl font-bold text-primary">250+</h3>
+        <h3 class="text-5xl font-bold text-primary">{{$mahasiswa}}</h3>
+        <p>Mahasiswa Aktif</p>
+      </div>
+      <div class="fade-up">
+        <h3 class="text-5xl font-bold text-primary">{{ $anggota }}</h3>
         <p>Anggota Aktif</p>
       </div>
       <div class="fade-up">
-        <h3 class="text-5xl font-bold text-primary">15+</h3>
-        <p>Program Kerja</p>
-      </div>
-      <div class="fade-up">
-        <h3 class="text-5xl font-bold text-primary">5+</h3>
-        <p>Prestasi Nasional</p>
+        <h3 class="text-5xl font-bold text-primary">{{$beritaPost}}</h3>
+        <p>Postingan Berita</p>
       </div>
     </div>
   </section>
