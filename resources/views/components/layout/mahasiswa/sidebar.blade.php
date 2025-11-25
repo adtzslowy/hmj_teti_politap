@@ -9,6 +9,17 @@
                 <i class="ti ti-x fs-8"></i>
             </div>
         </div>
+        @if (session()->has('impersonated_by'))
+            <div class="alert alert-warning text-center mx-3 my-3 p-2">
+                <b>Sedang Impersonate</b>
+                <form action="{{ route('impersonate.leave') }}" method="POST" class="mt-1">
+                    @csrf
+                    <button class="btn btn-sm btn-danger w-100">
+                        Keluar Akun
+                    </button>
+                </form>
+            </div>
+        @endif
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
             <ul id="sidebarnav">
@@ -17,8 +28,8 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link @if (request()->is('mahasiswa')) active @endif" href="{{ url('mahasiswa') }}"
-                        aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('mahasiswa')) active @endif"
+                        href="{{ url('mahasiswa') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-dashboard"></i>
                         </span>
@@ -30,7 +41,8 @@
                     <span class="hide-menu">MENU</span>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('mahasiswa/pendaftaran-anggota') }}" class="sidebar-link @if (request()->is('mahasiswa/pendaftaran-anggota*')) active @endif" aria-expanded="false">
+                    <a href="{{ url('mahasiswa/pendaftaran-anggota') }}"
+                        class="sidebar-link @if (request()->is('mahasiswa/pendaftaran-anggota*')) active @endif" aria-expanded="false">
                         <span>
                             <i class="ti ti-receipt"></i>
                         </span>
@@ -38,7 +50,8 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a href="{{ url('mahasiswa/pengaduan-anggota') }}" class="sidebar-link @if (request()->is('mahasiswa/pengaduan-anggota*')) active @endif" aria-expanded="false">
+                    <a href="{{ url('mahasiswa/pengaduan-anggota') }}"
+                        class="sidebar-link @if (request()->is('mahasiswa/pengaduan-anggota*')) active @endif" aria-expanded="false">
                         <span>
                             <i class="ti ti-message-report"></i>
                         </span>

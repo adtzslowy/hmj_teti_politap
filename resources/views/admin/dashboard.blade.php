@@ -9,9 +9,7 @@
                         </div>
                         <div>
                             <select id="filterRange" class="form-control" disabled>
-                                <option value="7">7 Hari Terakhir</option>
-                                <option value="30">1 Bulan Terakhir</option>
-                                <option value="365">1 Tahun Terakhir</option>
+                                <option value="19">7 Hari Terakhir</option>
                             </select>
                         </div>
                     </div>
@@ -77,30 +75,45 @@
                     <div class="mb-4">
                         <h5 class="card-title fw-semibold">Recent Activity</h5>
                     </div>
+
                     <ul class="timeline-widget mb-0 position-relative mb-n5">
                         @foreach ($recentActivity as $activity)
+                            @php
+                                $time = \Carbon\Carbon::parse($activity->logged_in_at)
+                                    ->setTimezone('Asia/Jakarta')
+                                    ->format('H:i');
+
+                                $badgeColor = match ($activity->user_type) {
+                                    'admin' => 'bg-dark',
+                                    'operator' => 'bg-info',
+                                    default => 'bg-success',
+                                };
+                            @endphp
+
                             <li class="timeline-item d-flex position-relative overflow-hidden">
+
+                                {{-- Time --}}
                                 <div class="timeline-time text-dark flex-shrink-0 text-end">
-                                    {{ \Carbon\Carbon::parse($activity->logged_in_at)->setTimezone('Asia/Jakarta')->format('H:i') }}
+                                    {{ $time }}
                                 </div>
 
+                                {{-- Badge --}}
                                 <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                    <span
-                                        class="timeline-badge border-2 border
-                    @if ($activity->user_type === 'admin') border-primary
-                    @elseif($activity->user_type === 'operator') border-info
-                    @else border-success @endif
-                    flex-shrink-0 my-8"></span>
+                                    <span class="timeline-badge border-2 {{ $badgeColor }} flex-shrink-0 my-8"></span>
 
-                                    <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                                    @if (!$loop->last)
+                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
+                                    @endif
                                 </div>
 
+                                {{-- Description --}}
                                 <div class="timeline-desc fs-3 text-dark mt-n1">
-                                    {{ $activity->user_type }} login
+                                    {{ ucfirst($activity->user_type) }} login
                                     <div class="fw-semibold">
                                         {{ $activity->ip_address ?? 'Unknown IP' }}
                                     </div>
                                 </div>
+
                             </li>
                         @endforeach
                     </ul>
@@ -108,6 +121,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-lg-8 d-flex align-items-stretch">
             <div class="card w-100">
                 <div class="card-body p-4">
@@ -126,7 +140,7 @@
                                         <h6 class="fw-semibold mb-0">Judul Aduan</h6>
                                     </th>
                                     <th class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">Priority</h6>
+                                        <h6 class="fw-semibold mb-0">Status</h6>
                                     </th>
                                     <th class="border-bottom-0">
                                         <h6 class="fw-semibold mb-0">Waktu</h6>

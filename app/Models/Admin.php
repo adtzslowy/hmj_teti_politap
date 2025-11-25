@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lab404\Impersonate\Models\Impersonate;
 
 class Admin extends Authenticatable
 {
+    use Impersonate;
     protected $table = "admin";
 
     protected $keyType = "string";
@@ -42,5 +44,10 @@ class Admin extends Authenticatable
         static::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+
+    public function canImpersonate()
+    {
+        return true;
     }
 }

@@ -109,7 +109,7 @@
                     <span class="hide-menu">TAKE OVER CONTROL</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ url('admin/impersonate') }}" aria-expanded="false">
+                    <a class="sidebar-link @if (request()->is('admin/impersonate*')) active @endif" href="{{ url('admin/impersonate') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-login"></i>
                         </span>

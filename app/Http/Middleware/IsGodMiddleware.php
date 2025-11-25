@@ -14,7 +14,7 @@ class IsGodMiddleware
         $admin = Auth::guard('admin')->user();
 
         if (!$admin || $admin->role !== 'God') {
-            abort(403);
+            return response()->view('errors.403');
         }
 
         return $next($request);

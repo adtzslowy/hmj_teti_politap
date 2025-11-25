@@ -44,7 +44,7 @@ class DashboardController extends Controller
                     ->count();
 
         $recentActivity = LoginLogs::orderBy('logged_in_at', 'DESC')
-                        ->take(5)
+                        ->take(3)
                         ->get();
 
         $recentAduan = Pengaduan::with('mahasiswa')

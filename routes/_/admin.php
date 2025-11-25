@@ -94,7 +94,7 @@ Route::prefix('pendaftar')->group(function () {
     Route::delete('/delete/{id}', [PendaftaranAnggotaController::class,'destroy']);
 });
 
-Route::prefix('impersonate')->middleware('isGod')->group(function () {
+Route::prefix('impersonate')->middleware(['auth:admin', 'isGod'])->group(function () {
     Route::get('/', [TakeOverController::class, 'index'])
             ->name('impersonate.mahasiswa');
 

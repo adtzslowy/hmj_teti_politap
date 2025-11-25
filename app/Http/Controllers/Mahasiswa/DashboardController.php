@@ -49,8 +49,6 @@ class DashboardController extends Controller
 
         if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
-        } else {
-            unset($data['password']);
         }
 
         if ($request->hasFile('foto_profil')) {
@@ -58,13 +56,14 @@ class DashboardController extends Controller
                 Storage::disk('public')->delete($mahasiswa->foto_profil);
             }
 
+            $file = $request->file('foto_profil');
+            $path = $file->store('mahasiswa/foto_profil', 'public');
             $data['foto_profil'] = $mahasiswa->profilePath($request);
         }
 
         $mahasiswa->update($data);
 
-        // Update session if the logged-in user is updating their own profile
-        if (Auth::guard('mahasiswa')->id() === $mahasiswa->id) {
+        if (!session()->has('impersonated_by') && Auth::guard('mahasiswa')->id() === $mahasiswa->id) {
             Auth::guard('mahasiswa')->login($mahasiswa);
         }
 

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lab404\Impersonate\Models\Impersonate;
 
 class Mahasiswa extends Authenticatable
 {
+    use Impersonate;
     protected $table = "mahasiswa";
     protected $keyType = "string";
     protected $fillable = [
@@ -50,4 +52,10 @@ class Mahasiswa extends Authenticatable
     {
         return $this->hasMany(Pengaduan::class,'mahasiswa_id', 'id');
     }
+
+    public function canBeImpersonated()
+    {
+        return true;
+    }
+
 }

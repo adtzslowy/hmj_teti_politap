@@ -15,8 +15,8 @@
                 {{-- Search --}}
                 <form method="GET" action="{{ url('admin/impersonate') }}" class="mb-3">
                     <div class="input-group">
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            class="form-control" placeholder="Cari nama atau NIM mahasiswa...">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control"
+                            placeholder="Cari nama atau NIM mahasiswa...">
                         <button class="btn btn-dark">
                             <i class="ti ti-search"></i>
                         </button>
@@ -43,8 +43,7 @@
                                     <td>{{ $mhs->nim }}</td>
                                     <td>{{ $mhs->prodi ?? '-' }}</td>
                                     <td class="text-center">
-                                        <form action="{{ route('impersonate.start', $mhs->id) }}"
-                                              method="POST">
+                                        <form action="{{ route('impersonate.start', $mhs->id) }}" method="POST">
                                             @csrf
                                             <button class="btn btn-warning btn-sm">
                                                 Take Over
@@ -62,8 +61,19 @@
                         </tbody>
                     </table>
                 </div>
-
                 {{-- Pagination --}}
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-3 mb-3">
+                    <div class="mb-2 mb-md-0">
+                        <span>
+                            Menampilkan {{ $mahasiswa->firstItem() ?? 0 }} sampai {{ $mahasiswa->lastItem() ?? 0 }} dari
+                            {{ $mahasiswa->total() ?? 0 }} data
+                        </span>
+                    </div>
+                    <div>
+                        {{ $mahasiswa->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
