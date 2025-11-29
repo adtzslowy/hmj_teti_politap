@@ -13,9 +13,12 @@ class ArsipController extends Controller
 {
     public function index()
     {
+        $admin = Auth::guard('admin')->user();
+
         $search = request()->query('search');
 
-        $arsip = Arsip::when($search, function ($query) use ($search) {
+        $arsip = Arsip::where('prodi_id', $admin->program_studi_id) // ⬅ filter arsip per prodi
+            ->when($search, function ($query) use ($search) {
                 return $query->where('nama_dokumen', 'like', "%{$search}%");
             })
             ->orderByDesc('created_at')
@@ -38,10 +41,12 @@ class ArsipController extends Controller
             'nama_dokumen' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx|max:2048',
+            'prodi_id' => 'required|exists:program_studi,id',
         ]);
 
         $arsip = new Arsip();
         $arsip->id_admin = Auth::guard('admin')->id();
+        $arsip->prodi_id = $request->prodi_id;
         $arsip->nama_dokumen = $request->nama_dokumen;
         $arsip->deskripsi = $request->deskripsi;
 
@@ -81,11 +86,13 @@ class ArsipController extends Controller
             'nama_dokumen' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
             'file' => 'nullable|mimes:pdf,doc,docx,xls,xlsx|max:5120',
+            'prodi_id' => 'required|exists:program_studi,id'
         ]);
 
         $arsip->nama_dokumen = $request->nama_dokumen;
         $arsip->deskripsi = $request->deskripsi;
         $arsip->replaceFile($request);
+        $arsip->prodi_id = $request->prodi_id;
         $arsip->save();
 
         return redirect()->route('arsip.index')->with('success', 'Arsip berhasil diperbarui.');

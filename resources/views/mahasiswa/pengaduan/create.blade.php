@@ -14,7 +14,7 @@
 
                 <form action="{{ url('mahasiswa/pengaduan-anggota') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+                        <input type="text" name="program_studi_id" value="{{ auth('mahasiswa')->user()->prodi_id }}" hidden>
                         <div class="mb-3">
                             <label for="judul_pengaduan" class="form-label">Judul Pengaduan</label>
                             <input type="text" name="judul_pengaduan" id="judul_pengaduan"

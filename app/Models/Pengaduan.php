@@ -22,7 +22,8 @@ class Pengaduan extends Model
         'deskripsi',
         'status',
         'tanggapan',
-        'bukti_aduan'
+        'bukti_aduan',
+        'program_studi_id'
     ];
 
     public static function boot()
@@ -36,6 +37,11 @@ class Pengaduan extends Model
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'program_studi_id', 'id');
     }
 
     public function deleteFile()

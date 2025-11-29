@@ -32,10 +32,6 @@
                             <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                             <div class="text-black form-control">{{ $mahasiswa->jenis_kelamin }}</div>
                         </div>
-                        <div class="mb-3">
-                            <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                            <div class="text-black form-control">{{ $mahasiswa->tempat_lahir }}</div>
-                        </div>
                     </div>
                     <div class="d-flex justify-content-end gap-2">
                         <a href="{{ url('admin/mahasiswa') }}" class="btn btn-dark">

@@ -11,11 +11,27 @@ class PendaftaranAnggotaController extends Controller
 {
     public function index()
     {
-        $pendaftar = Pendaftaran::with(['mahasiswa', 'divisiDipilih', 'divisiDitempatkan'])->get();
-        $divisi = Divisi::all();
+        $admin = auth()->guard('admin')->user();
+        $search = request()->query('search');
 
+        $pendaftar = Pendaftaran::with(['mahasiswa', 'divisiDipilih', 'divisiDitempatkan'])
+            ->when($admin->role !== 'God', function ($q) use ($admin) {
+                $q->whereHas('mahasiswa', function ($mhs) use ($admin) {
+                    $mhs->where('prodi_id', $admin->program_studi_id);
+                });
+            })
+            ->when($search, function ($q) use ($search) {
+                $q->whereHas('mahasiswa', function ($mhs) use ($search) {
+                    $mhs->where('nama_mahasiswa', 'like', "%$search%")
+                        ->orWhere('nim', 'like', "%$search%");
+                });
+            })
+            ->get();
+
+        $divisi = Divisi::all();
         return view('admin.pendaftaran.index', compact('pendaftar', 'divisi'));
     }
+
 
     public function approved(Request $request, string $id)
     {

@@ -31,7 +31,8 @@ class PengaduanController extends Controller
         $request->validate([
             'judul_pengaduan' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'bukti_aduan' => 'required|image|mimes:png,jpg,jpeg,webp,gif'
+            'bukti_aduan' => 'required|image|mimes:png,jpg,jpeg,webp,gif',
+            'program_studi_id' => 'required|exists:program_studi,id'
         ]);
 
         $mahasiswa = Auth::guard('mahasiswa')->user();
@@ -41,6 +42,7 @@ class PengaduanController extends Controller
             'deskripsi' => $request->deskripsi,
             'status' => 'Pending',
             'bukti_aduan' => $request->bukti_aduan,
+            'program_studi_id' => $request->program_studi_id,
         ]);
 
         return redirect('mahasiswa/pengaduan-anggota')->with('success', 'Pengaduan berhasil dikirim');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +22,8 @@ class TambahAdminController extends Controller
 
     public function create()
     {
-        return view('admin.akses.create');
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+        return view('admin.akses.create', compact('prodi'));
     }
 
     public function store(Request $request)
@@ -32,7 +34,8 @@ class TambahAdminController extends Controller
             'nim' => 'required|string',
             'password' => 'required|string|min:8',
             'role' => 'required|in:God,Operator',
-            'foto_profil' => 'nullable|mimes:jpg,jpeg,png,webp,gif'
+            'foto_profil' => 'nullable|mimes:jpg,jpeg,png,webp,gif',
+            'program_studi_id' => 'required|exists:program_studi,id',
         ]);
 
         $data = $request->except(['_token']);
@@ -54,7 +57,8 @@ class TambahAdminController extends Controller
     public function edit(string $id)
     {
         $admin = Admin::findOrFail($id);
-        return view('admin.akses.edit', compact('admin'));
+        $prodi = Prodi::orderBy('nama_prodi', 'ASC')->get();
+        return view('admin.akses.edit', compact('admin', 'prodi'));
     }
 
     public function update(Request $request, string $id)
@@ -66,7 +70,8 @@ class TambahAdminController extends Controller
             'password' => 'nullable|string|min:8',
             'email' => 'required|string',
             'role' => 'required|in:God,Operator',
-            'foto_profil' => 'nullable|string|mimes:png,jpg,jpeg,webp,gif'
+            'foto_profil' => 'nullable|string|mimes:png,jpg,jpeg,webp,gif',
+            'program_studi_id' => 'required|exists:program_studi,id'
         ]);
 
         $data = $request->except(['_token', 'foto_profil']);

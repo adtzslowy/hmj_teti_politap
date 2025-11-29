@@ -3,25 +3,42 @@
 namespace App\Imports;
 
 use App\Models\Mahasiswa;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Concerns\ToCollection;
 
-class MahasiswaImport implements ToModel, WithHeadingRow
+class MahasiswaImport implements ToCollection
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public function collection(Collection $rows)
     {
-        return new Mahasiswa([
-            "nama_mahasiswa" => $row["nama_mahasiswa"] ?? null,
-            "nim" => $row["nim"] ?? null,
-            "status_mahasiswa" => $row["status_mahasiswa"] ?? null,
-            "jenis_kelamin" => $row["jenis_kelamin"] ?? null,
-            "foto_profil" => $row["foto_profil"] ?? null,
-            "password" => isset($row["nim"]) ? bcrypt($row["nim"]) : bcrypt("default123"),
-        ]);
+        // Hapus baris header
+        $rows->shift();
+
+        $data = [];
+        $prodi = Auth::guard('admin')->user()->program_studi_id;
+
+        foreach ($rows as $row) {
+            // Skip baris kosong
+            if (!$row[0]) continue;
+
+            $data[] = [
+                "id"               => Str::uuid()->toString(),
+                "nama_mahasiswa"   => $row[0],
+                "nim"              => strval($row[1]),
+                "status_mahasiswa" => $row[2],
+                "jenis_kelamin"    => $row[3],
+                "foto_profil"      => $row[4] ?? "-",
+                "prodi_id"         => $prodi,
+                // bcrypt cost rendah = 10x lebih cepat
+                "password"         => password_hash($row[1], PASSWORD_BCRYPT, ['cost' => 8]),
+                "created_at"       => now(),
+                "updated_at"       => now(),
+            ];
+        }
+
+        // Bulk insert (super cepat)
+        DB::table('mahasiswa')->insert($data);
     }
 }

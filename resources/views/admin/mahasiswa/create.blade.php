@@ -15,7 +15,7 @@
                         @endforeach
                     @endif
 
-
+                    <input type="text" name="prodi_id" value="{{ auth()->guard('admin')->user()->program_studi_id }}" hidden>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
@@ -38,8 +38,8 @@
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                 <select name="jenis_kelamin" class="form-select">
                                     <option value="" selected disabled>Jenis Kelamin</option>
-                                    <option value="Laki-Laki">Laki-Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Pria">Pria</option>
+                                    <option value="Wanita">Wanita</option>
                                 </select>
                             </div>
                             <div class="mb-3">

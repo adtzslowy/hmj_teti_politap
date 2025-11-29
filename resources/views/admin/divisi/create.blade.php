@@ -13,7 +13,7 @@
                             <div class="alert alert-danger">{{ $err }}</div>
                         @endforeach
                     @endif
-
+                    <input type="text" name="prodi_id" value="{{ auth('admin')->user()->program_studi_id }}" hidden>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">

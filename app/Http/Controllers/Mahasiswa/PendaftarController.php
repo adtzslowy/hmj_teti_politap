@@ -45,7 +45,7 @@ class PendaftarController extends Controller
     {
         $request->validate([
             "alasan_bergabung" => 'required|string|',
-            'divisi_dipilih_id' => 'required|exists:divisi,id'
+            'divisi_dipilih_id' => 'required|exists:divisi,id',
         ]);
 
         $mahasiswa = Auth::guard('mahasiswa')->user();

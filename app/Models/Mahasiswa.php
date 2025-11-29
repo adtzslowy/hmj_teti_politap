@@ -17,7 +17,8 @@ class Mahasiswa extends Authenticatable
         'password',
         'status_mahasiswa',
         'jenis_kelamin',
-        'foto_profil'
+        'foto_profil',
+        'prodi_id',
     ];
 
     public static function boot()
@@ -56,6 +57,11 @@ class Mahasiswa extends Authenticatable
     public function canBeImpersonated()
     {
         return true;
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
 }

@@ -72,12 +72,7 @@
                             </td>
                             <td>{{ $m->nama_mahasiswa }}</td>
                             <td>{{ $m->nim }}</td>
-                            <td>
-                                <span
-                                    class="badge {{ $m->status_mahasiswa === 'Aktif' ? 'bg-success' : 'bg-danger' }}">
-                                    {{ ucfirst($m->status_mahasiswa) }}
-                                </span>
-                            </td>
+                            <td>{{ $m->prodi->nama_prodi }}</td>
                         </tr>
                     @empty
                         <tr>
@@ -96,7 +91,7 @@
                     </span>
                 </div>
                 <div>
-                    {{ $mahasiswa->links('pagination::bootstrap-5') }}
+                    {{ $mahasiswa->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

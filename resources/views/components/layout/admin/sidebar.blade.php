@@ -38,17 +38,6 @@
                         <span class="hide-menu">Divisi</span>
                     </a>
                 </li>
-                @if (Auth::user()->role === 'God')
-                    <li class="sidebar-item">
-                        <a href="{{ url('admin/tambah-admin/') }}"
-                            class="sidebar-link @if (request()->is('admin/tambah-admin*')) active @endif" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-crown"></i>
-                            </span>
-                            <span class="hide-menu">Tambah Admin</span>
-                        </a>
-                    </li>
-                @endif
                 <li class="sidebar-item">
                     <a class="sidebar-link @if (request()->is('admin/mahasiswa*')) active @endif"
                         href="{{ url('admin/mahasiswa') }}" aria-expanded="false">
@@ -106,14 +95,30 @@
 
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">TAKE OVER CONTROL</span>
+                    <span class="hide-menu">GOD MODE FEATURE</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link @if (request()->is('admin/tambah-admin*')) active @endif" href="{{ url('admin/tambah-admin') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-crown"></i>
+                        </span>
+                        <span class="hide-menu">Operator</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link @if (request()->is('admin/prodi*')) active @endif" href="{{ url('admin/prodi') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-pin"></i>
+                        </span>
+                        <span class="hide-menu">Program Studi</span>
+                    </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link @if (request()->is('admin/impersonate*')) active @endif" href="{{ url('admin/impersonate') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-login"></i>
                         </span>
-                        <span class="hide-menu">Take Over Mahasiswa</span>
+                        <span class="hide-menu">Take Over</span>
                     </a>
                 </li>
             </ul>

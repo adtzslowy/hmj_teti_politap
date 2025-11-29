@@ -23,6 +23,8 @@
                                 <div class="alert alert-danger">{{ session('error') }}</div>
                             @endif
 
+                            <input type="text" name="prodi_id" value="{{ auth('admin')->user()->program_studi_id }}" hidden>
+
                             <div class="mb-3">
                                 <label for="nama_dokumen" class="form-label fw-bold">Nama Dokumen</label>
                                 <input type="text" name="nama_dokumen" id="nama_dokumen" class="form-control"
@@ -54,7 +56,7 @@
                                 @if ($arsip->file)
                                     <div class="mt-2">
                                         <p class="fw-bold mb-1">File saat ini:</p>
-                                        <a href="{{ url('storage/' . $arsip->file) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        <a href="{{ url('storage/arsip/' . $arsip->file) }}" target="_blank" class="btn btn-outline-dark btn-sm">
                                             <i class="ti ti-file"></i> Lihat Dokumen
                                         </a>
                                     </div>

@@ -15,6 +15,7 @@ class Arsip extends Model
         'nama_dokumen',
         'deskripsi',
         'file',
+        'prodi_id'
     ];
 
     public $incrementing = false;
@@ -22,6 +23,11 @@ class Arsip extends Model
     public function admin()
     {
         return $this->belongsTo(Admin::class, 'id_admin', 'id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
 

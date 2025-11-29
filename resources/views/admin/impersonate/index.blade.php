@@ -41,7 +41,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $mhs->nama_mahasiswa }}</td>
                                     <td>{{ $mhs->nim }}</td>
-                                    <td>{{ $mhs->prodi ?? '-' }}</td>
+                                    <td>{{ $mhs->prodi_id ?? '-' }}</td>
                                     <td class="text-center">
                                         <form action="{{ route('impersonate.start', $mhs->id) }}" method="POST">
                                             @csrf

@@ -9,6 +9,12 @@
                     <div class="card-body">
                         <form action="{{ url('admin/arsip') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $err)
+                                    <div class="alert alert-danger">{{ $err }}</div>
+                                @endforeach
+                            @endif
+                            <input type="text" name="prodi_id" value="{{ auth('admin')->user()->program_studi_id }}" hidden>
 
                             <div class="mb-3">
                                 <label for="nama_dokumen" class="form-label fw-bold">Nama Dokumen</label>

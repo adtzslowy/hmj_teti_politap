@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'Himpunan Mahasiswa Jurusan' }}</title>
-    <link rel="shortcut icon" type="image/png" href="{{ url('source') }}/assets/images/logos/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ url('source') }}/assets/images/logos/favicon.svg" />
     <link rel="stylesheet" href="{{ url('source') }}/assets/css/styles.min.css" />
 </head>
 

@@ -40,4 +40,9 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(Divisi::class,'divisi_ditempatkan_id');
     }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id');
+    }
 }

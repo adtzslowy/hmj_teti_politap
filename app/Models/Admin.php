@@ -19,6 +19,7 @@ class Admin extends Authenticatable
         "password",
         "foto_profil",
         "role",
+        "program_studi_id",
     ];
 
     public function arsip()
@@ -49,5 +50,10 @@ class Admin extends Authenticatable
     public function canImpersonate()
     {
         return true;
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'program_studi_id', 'id');
     }
 }

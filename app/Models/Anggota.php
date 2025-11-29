@@ -12,7 +12,7 @@ class Anggota extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
-    protected $fillable = ['mahasiswa_id', 'divisi_id'];
+    protected $fillable = ['mahasiswa_id', 'divisi_id', 'prodi_id'];
 
     public static function boot()
     {
@@ -30,5 +30,10 @@ class Anggota extends Model
     public function divisi()
     {
         return $this->belongsTo(Divisi::class, 'divisi_id');
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 }

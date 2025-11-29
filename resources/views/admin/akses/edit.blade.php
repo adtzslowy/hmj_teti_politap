@@ -54,6 +54,15 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="program_studi_id" class="form-label">Program Studi</label>
+                                        <select name="program_studi_id" id="program_studi_id" class="form-select">
+                                            <option value="" disabled selected>Masukkan Program Studi</option>
+                                            @foreach ($prodi as $p)
+                                                <option value="{{ $p->id }}" {{ $admin->program_studi_id === $p->id ? 'selected' : '' }}>{{ $p->nama_prodi }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>

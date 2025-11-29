@@ -14,13 +14,22 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
+        $admin = auth()->guard('admin')->user();
         $search = request()->query('search');
+        $mahasiswa = Mahasiswa::query()->when($admin->role !== 'God', function ($q) use ($admin) {
+            $q->where('prodi_id', $admin->program_studi_id);
+        })
 
-        $mahasiswa = Mahasiswa::orderBy('nim','asc')->when($search, function ($query) use ($search) {
-            return $query->where('nama_mahasiswa', 'like', "%{$search}%")
-                            ->orWhere('nim', 'like', "%{$search}%");
+        ->when($search, function ($q) use ($search) {
+            $q->where(function ($sub) use ($search) {
+                $sub->where('nama_mahasiswa', 'like', "%{$search}%")
+                    ->orWhere('nim', 'like', "%{$search}%");
+            });
+        })
 
-        })->paginate(10);
+        ->with('prodi')
+        ->orderBy('nim', 'asc')
+        ->paginate(10);
         return view('admin.mahasiswa.index', compact('mahasiswa'));
     }
 
@@ -41,8 +50,9 @@ class MahasiswaController extends Controller
             'nama_mahasiswa' => 'required|string|max:255',
             'nim' => 'required|string|max:255|unique:mahasiswa,nim',
             'status_mahasiswa' => 'required|in:Aktif,Tidak Aktif',
-            'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096'
+            'jenis_kelamin' => 'required|in:Pria,Wanita',
+            'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096',
+            'prodi_id' => 'required|exists:program_studi,id'
         ]);
 
         $data = $request->except(['_token', 'foto_profil']);
@@ -88,8 +98,9 @@ class MahasiswaController extends Controller
             'nama_mahasiswa' => 'required|string|max:255',
             'nim' => 'nullable|string|max:255',
             'status_mahasiswa' => 'required|in:Aktif,Tidak Aktif',
-            'jenis_kelamin' => 'required|in:Laki-Laki,Perempuan',
-            'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096'
+            'jenis_kelamin' => 'required|in:Pria,Wanita',
+            'foto_profil' => 'nullable|mimes:jpg,png,webp,jpeg|max:4096',
+            'prodi_id' => 'required|exists:program_studi,id',
         ]);
 
         $data = $request->except(['_token', 'foto_profil']);
@@ -138,6 +149,10 @@ class MahasiswaController extends Controller
 
         Excel::import(new MahasiswaImport, $request->file('file'));
 
-        return redirect()->back()->with('success', 'Data berhasil di import');
+        try {
+            return back()->with('success', 'Data berhasil diimport');
+        } catch (Exception $e) {
+            return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
 }

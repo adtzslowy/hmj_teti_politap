@@ -15,6 +15,7 @@ class Berita extends Model
         'dokumentasi',
         'deskripsi',
         'tanggal_post',
+        'prodi_id',
     ];
 
     public static function boot()
@@ -23,6 +24,11 @@ class Berita extends Model
         static::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id', 'id');
     }
 
     public function fotoBerita($request)

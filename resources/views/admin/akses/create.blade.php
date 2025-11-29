@@ -21,24 +21,26 @@
                             {{-- foto profil --}}
                             <div class="col-md-6 text-center border-end">
                                 <img id="preview" src=""
-                                    style="max-width: 200px; margin-top: 10px; display: none;"
-                                    alt="Preview Foto">
+                                    style="max-width: 200px; margin-top: 10px; display: none;" alt="Preview Foto">
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nama</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Masukkan nama mahasiswa" required>
+                                    <input type="text" name="name" class="form-control"
+                                        placeholder="Masukkan nama mahasiswa" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="nim" class="form-label">Nomor Induk Mahasiswa</label>
-                                    <input type="text" name="nim" class="form-control" placeholder="Masukkan nomor induk mahasiswa" required>
+                                    <input type="text" name="nim" class="form-control"
+                                        placeholder="Masukkan nomor induk mahasiswa" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Masukkan email" required>
+                                    <input type="email" name="email" class="form-control"
+                                        placeholder="Masukkan email" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -51,14 +53,25 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label for="program_studi_id" class="form-label">Program Studi</label>
+                                    <select name="program_studi_id" id="program_studi_id" class="form-select" required>
+                                        <option value="" disabled selected>Masukkan Program Studi</option>
+                                        @foreach ($prodi as $pro)
+                                            <option value="{{ e($pro->id) }}">{{ $pro->nama_prodi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Masukkan password" value="default1234">
+                                    <input type="password" name="password" class="form-control"
+                                        placeholder="Masukkan password" value="default1234">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="foto_profil" class="form-label">Profile Picture</label>
-                                    <input type="file" name="foto_profil" id="foto_profil"
-                                        class="form-control" accept="image/*">
+                                    <input type="file" name="foto_profil" id="foto_profil" class="form-control"
+                                        accept="image/*">
                                 </div>
                             </div>
                         </div>

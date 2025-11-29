@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DivisiController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PendaftaranAnggotaController;
 use App\Http\Controllers\Admin\PengaduanController;
+use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\TakeOverController;
 use App\Http\Controllers\Admin\TambahAdminController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,7 @@ Route::prefix('divisi')->group(function() {
     Route::post('/{id}/toggle', [DivisiController::class, 'toggleStatus'])->name('divisi.toggle');
 });
 
-Route::prefix('tambah-admin')->middleware(['auth', 'role:God'])->group(function () {
+Route::prefix('tambah-admin')->middleware(['role:God'])->group(function () {
     Route::get('/', [TambahAdminController::class, 'index']);
     Route::get('/create', [TambahAdminController::class, 'create']);
     Route::post('/', [TambahAdminController::class, 'store']);
@@ -103,4 +104,12 @@ Route::prefix('impersonate')->middleware(['auth:admin', 'isGod'])->group(functio
 
     Route::post('/leave', [TakeOverController::class, 'leave'])
             ->name('impersonate.leave');
+});
+
+Route::prefix('prodi')->middleware(['auth:admin', 'isGod'])->group(function() {
+    Route::get('/', [ProdiController::class, 'index']);
+    Route::get('/create', [ProdiController::class, 'create']);
+    Route::post('/', [ProdiController::class, 'store']);
+    Route::get('/edit/{id}', [ProdiController::class, 'edit']);
+    Route::put('/{id}', [ProdiController::class, 'update']);
 });

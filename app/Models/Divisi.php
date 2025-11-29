@@ -12,6 +12,7 @@ class Divisi extends Model
 
     protected $fillable = [
         'nama_divisi',
+        'prodi_id',
     ];
 
     public static function boot()

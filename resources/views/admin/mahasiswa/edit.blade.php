@@ -23,6 +23,7 @@
                         </div>
                     @endif
 
+                    <input type="text" name="prodi_id" value="{{ auth('admin')->user()->program_studi_id }}" hidden>
                     <div class="row">
                         <div class="col-md-6 text-center">
                             @if ($mahasiswa->foto_profil)
@@ -63,12 +64,12 @@
                                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                                 <select name="jenis_kelamin" class="form-select">
                                     <option value="" selected disabled>Jenis Kelamin</option>
-                                    <option value="Laki-Laki"
-                                        {{ old('jenis_kelamin', $mahasiswa->jenis_kelamin) == 'Laki-Laki' ? 'selected' : '' }}>
-                                        Laki-Laki</option>
-                                    <option value="Perempuan"
-                                        {{ old('jenis_kelamin', $mahasiswa->jenis_kelamin) == 'Perempuan' ? 'selected' : '' }}>
-                                        Perempuan</option>
+                                    <option value="Pria"
+                                        {{ old('jenis_kelamin', $mahasiswa->jenis_kelamin) == 'Pria' ? 'selected' : '' }}>
+                                        Pria</option>
+                                    <option value="Wanita"
+                                        {{ old('jenis_kelamin', $mahasiswa->jenis_kelamin) == 'Wanita' ? 'selected' : '' }}>
+                                        Wanita</option>
                                 </select>
                             </div>
                             <div class="mb-3">

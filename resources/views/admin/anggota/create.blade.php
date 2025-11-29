@@ -14,6 +14,8 @@
                             <div class="alert alert-danger">{{ $err }}</div>
                         @endforeach
                     @endif
+
+                    <input type="text" name="prodi_id" value="{{ auth('admin')->user()->program_studi_id }}" hidden>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -30,9 +32,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="divisi_id" class="form-label">Jabatan Di Organisasi</label>
+                                <label for="divisi_id" class="form-label">Divisi Di Organisasi</label>
                                 <select name="divisi_id" id="divisi_id" class="form-select" required>
-                                    <option value="" disabled selected>Masukkan Jabatan</option>
+                                    <option value="" disabled selected>Masukkan Divisi</option>
                                     @foreach ($divisi as $d)
                                         <option value="{{ $d->id }}">{{ $d->nama_divisi }}</option>
                                     @endforeach
