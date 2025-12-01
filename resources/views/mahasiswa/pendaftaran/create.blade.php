@@ -15,6 +15,7 @@
                 <form action="{{ url('mahasiswa/pendaftaran-anggota') }}" method="post">
                     @csrf
 
+                    <input type="text" name="program_studi_id" value="{{ auth('mahasiswa')->user()->prodi_id}}" hidden>
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label for="alasan_bergabung" class="form-label">Alasan bergabung </label>

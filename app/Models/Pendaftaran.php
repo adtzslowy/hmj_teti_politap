@@ -11,12 +11,13 @@ class Pendaftaran extends Model
     protected $keyType = "string";
 
     protected $fillable = [
-        'divisi_dipilih_id',
-        'divisi_ditempatkan_id',
-        'mahasiswa_id',
-        'status_pendaftaran',
-        'alasan_bergabung',
-        'alasan_ditolak',
+        "divisi_dipilih_id",
+        "divisi_ditempatkan_id",
+        "mahasiswa_id",
+        "status_pendaftaran",
+        "alasan_bergabung",
+        "alasan_ditolak",
+        "program_studi_id",
     ];
 
     public static function boot()
@@ -29,20 +30,20 @@ class Pendaftaran extends Model
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id');
+        return $this->belongsTo(Mahasiswa::class, "mahasiswa_id");
     }
 
     public function divisiDipilih()
     {
-        return $this->belongsTo(Divisi::class,'divisi_dipilih_id');
+        return $this->belongsTo(Divisi::class, "divisi_dipilih_id");
     }
     public function divisiDitempatkan()
     {
-        return $this->belongsTo(Divisi::class,'divisi_ditempatkan_id');
+        return $this->belongsTo(Divisi::class, "divisi_ditempatkan_id");
     }
 
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class, 'prodi_id');
+        return $this->belongsTo(Prodi::class, "prodi_id");
     }
 }
