@@ -64,7 +64,6 @@
         <li><a href="#activities" class="hover:text-red-500 transition-all duration-300 ">Kegiatan</a></li>
         <li><a href="#news" class="hover:text-red-500 transition-all duration-300 ">Berita</a></li>
         <li><a href="#complaints" class="hover:text-red-500 transition-all duration-300 ">Pengaduan</a></li>
-        <li><a href="#contact" class="hover:text-red-500 transition-all duration-300 ">Kontak</a></li>
       </ul>
     </div>
 
@@ -98,7 +97,6 @@
       <li><a href="#activities" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Kegiatan</a></li>
       <li><a href="#news" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Berita</a></li>
       <li><a href="#complaints" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Pengaduan</a></li>
-      <li><a href="#contact" class="hover:text-red-500 transition-all duration-300" @click="mobileMenuOpen=false">Kontak</a></li>
     </ul>
 
   <div class="pb-6 text-center">
@@ -132,7 +130,7 @@
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-3xl font-bold mb-6 fade-up">Tentang Kami</h2>
       <p class="max-w-3xl mx-auto text-gray-600 leading-relaxed fade-up">
-        HMJ TETI POLITAP adalah organisasi mahasiswa yang menjadi wadah aspirasi, pengembangan potensi, dan solidaritas mahasiswa Jurusan Teknik Elektro & Informatika di Politeknik Negeri Ambon.
+        HMJ TETI POLITAP adalah organisasi mahasiswa yang menjadi wadah aspirasi, pengembangan potensi, dan solidaritas mahasiswa Jurusan Teknik Elektro & Informatika di Politeknik Negeri Ketapang.
       </p>
     </div>
   </section>

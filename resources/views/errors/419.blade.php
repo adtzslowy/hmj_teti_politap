@@ -69,7 +69,7 @@
 
             if (time <= 0) {
                 clearInterval(interval);
-                window.location.href = "/admin";
+                window.history.back();
             }
         }, 1000);
     </script>

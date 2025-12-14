@@ -52,8 +52,8 @@
 
 <body>
     <div id="app">
-        <div>503</div>
-        <div class="txt">Maintenance</div>
+        <div>500</div>
+        <div class="txt">Server Error</div>
         <div class="txt" id="countdown">
             Anda akan di redirect kembali ke dashboard dalam 5 <span class="blink">_</span>
         </div>
@@ -69,7 +69,7 @@
 
             if (time <= 0) {
                 clearInterval(interval);
-                window.location.href = "/admin";
+                window.history.back();
             }
         }, 1000);
     </script>

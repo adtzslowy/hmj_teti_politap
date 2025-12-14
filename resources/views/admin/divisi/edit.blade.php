@@ -10,7 +10,7 @@
                     @method('PUT')
 
                     @if ($errors->any())
-                        @foreach ($errros->all() as $err)
+                        @foreach ($errors->all() as $err)
                             <div class="alert alert-danger">{{ $err }}</div>
                         @endforeach
                     @endif
